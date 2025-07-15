@@ -29,7 +29,7 @@
         <div class="max-w-sm mx-auto px-6 py-6 lg:max-w-6xl lg:px-8">
             <div class="lg:flex lg:items-center lg:justify-between">
                 <h1 class="text-2xl font-semibold text-gray-900 lg:text-3xl">植物観察日記</h1>
-                <div class="hidden lg:flex lg:space-x-4">
+                <div class="hidden lg:flex lg:items-center lg:space-x-4">
                     <a href="plant-list.html" class="px-4 py-2 border border-gray-200 rounded-lg hover:border-accent transition-colors">
                         植物一覧
                     </a>
@@ -42,6 +42,29 @@
                     <a href="watering.html" class="px-4 py-2 border border-gray-200 rounded-lg hover:border-accent transition-colors">
                         水やり管理
                     </a>
+                    
+                    <!-- User Profile -->
+                    <div class="relative">
+                        <button class="flex items-center space-x-2 px-3 py-2 border border-gray-200 rounded-lg hover:border-accent transition-colors">
+                            <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm font-medium">田</span>
+                            </div>
+                            <span class="text-sm font-medium">田中太郎</span>
+                            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        
+                        <!-- Dropdown Menu (hidden by default) -->
+                        <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-10 hidden">
+                            <div class="py-1">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">プロフィール</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">設定</a>
+                                <hr class="my-1">
+                                <a href="login.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">ログアウト</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

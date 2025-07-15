@@ -32,7 +32,29 @@
                     ←
                 </button>
                 <h1 class="text-xl font-semibold text-gray-900 lg:text-2xl">植物を登録</h1>
-                <div class="w-6"></div>
+                
+                <!-- User Profile -->
+                <div class="relative">
+                    <button class="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors lg:px-3 lg:py-2 lg:border lg:border-gray-200 lg:rounded-lg lg:hover:border-accent">
+                        <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
+                            <span class="text-white text-sm font-medium">田</span>
+                        </div>
+                        <span class="hidden lg:inline text-sm font-medium">田中太郎</span>
+                        <svg class="w-4 h-4 text-gray-500 hidden lg:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    
+                    <!-- Dropdown Menu (hidden by default) -->
+                    <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-10 hidden">
+                        <div class="py-1">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">プロフィール</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">設定</a>
+                            <hr class="my-1">
+                            <a href="login.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">ログアウト</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
