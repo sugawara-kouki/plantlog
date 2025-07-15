@@ -26,26 +26,26 @@
 <body class="bg-white min-h-screen text-gray-900 font-sans">
     <!-- Header -->
     <header class="border-b border-gray-100">
-        <div class="max-w-sm mx-auto px-6 py-6">
+        <div class="max-w-sm mx-auto px-6 py-6 lg:max-w-4xl lg:px-8">
             <div class="flex items-center justify-between">
                 <button onclick="history.back()" class="text-gray-600 hover:text-gray-900 transition-colors">
                     ←
                 </button>
-                <h1 class="text-xl font-semibold text-gray-900">植物を登録</h1>
+                <h1 class="text-xl font-semibold text-gray-900 lg:text-2xl">植物を登録</h1>
                 <div class="w-6"></div>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-sm mx-auto px-6 py-8">
-        <form class="space-y-12">
+    <main class="max-w-sm mx-auto px-6 py-8 lg:max-w-4xl lg:px-8 lg:py-12">
+        <form class="space-y-12 lg:grid lg:grid-cols-2 lg:gap-12 lg:space-y-0">
             <!-- Photo Upload -->
-            <div>
-                <h2 class="text-lg font-medium text-gray-900 mb-6">写真</h2>
-                <div class="border border-gray-200 rounded-lg p-8 text-center">
-                    <div class="w-16 h-16 bg-gray-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+            <div class="lg:col-span-1">
+                <h2 class="text-lg font-medium text-gray-900 mb-6 lg:text-xl">写真</h2>
+                <div class="border border-gray-200 rounded-lg p-8 text-center lg:p-12">
+                    <div class="w-16 h-16 bg-gray-100 rounded-full mx-auto mb-4 flex items-center justify-center lg:w-20 lg:h-20">
+                        <div class="w-2 h-2 bg-gray-400 rounded-full lg:w-3 lg:h-3"></div>
                     </div>
                     <button type="button" class="text-gray-900 font-medium hover:text-accent transition-colors">
                         写真を選択
@@ -55,8 +55,8 @@
             </div>
 
             <!-- Plant Information -->
-            <div>
-                <h2 class="text-lg font-medium text-gray-900 mb-6">基本情報</h2>
+            <div class="lg:col-span-1">
+                <h2 class="text-lg font-medium text-gray-900 mb-6 lg:text-xl">基本情報</h2>
                 
                 <div class="space-y-8">
                     <!-- Plant Name -->
@@ -109,8 +109,8 @@
             </div>
 
             <!-- Water Schedule -->
-            <div>
-                <h2 class="text-lg font-medium text-gray-900 mb-6">水やり設定</h2>
+            <div class="lg:col-span-2">
+                <h2 class="text-lg font-medium text-gray-900 mb-6 lg:text-xl">水やり設定</h2>
                 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">水やりの頻度</label>
@@ -125,17 +125,17 @@
             </div>
 
             <!-- Submit Button -->
-            <div class="pt-8">
+            <div class="pt-8 lg:col-span-2">
                 <button type="submit" 
-                        class="w-full bg-accent text-white py-4 rounded-lg hover:bg-accent/90 transition-colors font-medium">
+                        class="w-full bg-accent text-white py-4 rounded-lg hover:bg-accent/90 transition-colors font-medium lg:max-w-xs lg:mx-auto lg:block">
                     登録する
                 </button>
             </div>
         </form>
     </main>
 
-    <!-- Bottom Navigation -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100">
+    <!-- Bottom Navigation (Mobile only) -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 lg:hidden">
         <div class="max-w-sm mx-auto px-6">
             <div class="flex justify-around py-4">
                 <a href="index.html" class="flex flex-col items-center space-y-1">
@@ -166,7 +166,7 @@
         </div>
     </nav>
 
-    <!-- Bottom padding for navigation -->
-    <div class="h-20"></div>
+    <!-- Bottom padding for navigation (Mobile only) -->
+    <div class="h-20 lg:hidden"></div>
 </body>
 </html>

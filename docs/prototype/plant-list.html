@@ -26,24 +26,25 @@
 <body class="bg-white min-h-screen text-gray-900 font-sans">
     <!-- Header -->
     <header class="border-b border-gray-100">
-        <div class="max-w-sm mx-auto px-6 py-6">
+        <div class="max-w-sm mx-auto px-6 py-6 lg:max-w-6xl lg:px-8">
             <div class="flex items-center justify-between">
                 <button onclick="history.back()" class="text-gray-600 hover:text-gray-900 transition-colors">
                     ←
                 </button>
-                <h1 class="text-xl font-semibold text-gray-900">植物一覧</h1>
-                <a href="plant-register.html" class="text-gray-600 hover:text-gray-900 transition-colors">
-                    +
+                <h1 class="text-xl font-semibold text-gray-900 lg:text-2xl">植物一覧</h1>
+                <a href="plant-register.html" class="text-gray-600 hover:text-gray-900 transition-colors lg:px-4 lg:py-2 lg:bg-accent lg:text-white lg:rounded-lg lg:hover:bg-accent/90">
+                    <span class="lg:hidden">+</span>
+                    <span class="hidden lg:inline">植物を登録</span>
                 </a>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-sm mx-auto px-6 py-8">
+    <main class="max-w-sm mx-auto px-6 py-8 lg:max-w-6xl lg:px-8 lg:py-12">
         <!-- Filter Tabs -->
         <div class="mb-12">
-            <div class="flex space-x-2">
+            <div class="flex space-x-2 lg:max-w-md">
                 <button class="flex-1 py-3 px-4 text-sm font-medium text-white bg-accent rounded-lg">
                     すべて
                 </button>
@@ -57,50 +58,102 @@
         </div>
 
         <!-- Plants List -->
-        <div class="mb-12">
-            <h2 class="text-lg font-medium text-gray-900 mb-6">植物</h2>
+        <div class="mb-12 lg:flex lg:gap-8">
+            <div class="lg:flex-1">
+                <h2 class="text-lg font-medium text-gray-900 mb-6 lg:text-xl">植物</h2>
+                
+                <div class="space-y-4 lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0">
+                    <!-- Plant Item -->
+                    <div class="py-4 lg:p-6 lg:border lg:border-gray-200 lg:rounded-lg">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-gray-900 font-medium">モンステラ</h3>
+                            <span class="text-sm text-gray-500">2024.01.15</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">最終記録: 3日前</span>
+                            <span class="text-xs text-accent bg-accent/10 px-2 py-1 rounded-full">水やり予定</span>
+                        </div>
+                    </div>
+
+                    <!-- Plant Item -->
+                    <div class="py-4 border-t border-gray-100 lg:p-6 lg:border lg:border-gray-200 lg:rounded-lg lg:border-t-0">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-gray-900 font-medium">サンセベリア</h3>
+                            <span class="text-sm text-gray-500">2024.02.01</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">最終記録: 1日前</span>
+                            <span class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-full">元気</span>
+                        </div>
+                    </div>
+
+                    <!-- Plant Item -->
+                    <div class="py-4 border-t border-gray-100 lg:p-6 lg:border lg:border-gray-200 lg:rounded-lg lg:border-t-0">
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="text-gray-900 font-medium">ポトス</h3>
+                            <span class="text-sm text-gray-500">2024.02.10</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">最終記録: 5日前</span>
+                            <span class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-full">普通</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            <div class="space-y-4">
-                <!-- Plant Item -->
-                <div class="py-4">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-gray-900 font-medium">モンステラ</h3>
-                        <span class="text-sm text-gray-500">2024.01.15</span>
+            <!-- Sidebar for PC -->
+            <div class="hidden lg:block lg:w-80">
+                <div class="space-y-6">
+                    <!-- Quick Actions -->
+                    <div class="p-6 bg-white border border-gray-200 rounded-lg">
+                        <h3 class="text-gray-900 font-medium mb-4">クイックアクション</h3>
+                        <div class="space-y-3">
+                            <a href="diary-entry.html" class="block w-full py-2 px-4 text-sm text-center border border-gray-200 rounded-lg hover:border-accent transition-colors">
+                                記録する
+                            </a>
+                            <a href="watering.html" class="block w-full py-2 px-4 text-sm text-center bg-accent text-white rounded-lg hover:bg-accent/90 transition-colors">
+                                水やり管理
+                            </a>
+                        </div>
                     </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-gray-600">最終記録: 3日前</span>
-                        <span class="text-xs text-accent bg-accent/10 px-2 py-1 rounded-full">水やり予定</span>
+                    
+                    <!-- Today's Reminder moved to sidebar -->
+                    <div class="p-6 bg-accent/5 border border-accent/20 rounded-lg">
+                        <div class="flex flex-col space-y-4">
+                            <div>
+                                <h3 class="text-gray-900 font-medium mb-2">今日のお知らせ</h3>
+                                <p class="text-sm text-gray-600">モンステラの水やり時期です</p>
+                            </div>
+                            <button class="px-4 py-2 bg-accent text-white text-sm rounded-lg hover:bg-accent/90 transition-colors">
+                                完了
+                            </button>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Plant Item -->
-                <div class="py-4 border-t border-gray-100">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-gray-900 font-medium">サンセベリア</h3>
-                        <span class="text-sm text-gray-500">2024.02.01</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-gray-600">最終記録: 1日前</span>
-                        <span class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-full">元気</span>
-                    </div>
-                </div>
-
-                <!-- Plant Item -->
-                <div class="py-4 border-t border-gray-100">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-gray-900 font-medium">ポトス</h3>
-                        <span class="text-sm text-gray-500">2024.02.10</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-sm text-gray-600">最終記録: 5日前</span>
-                        <span class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-full">普通</span>
+                    
+                    <!-- Quick Stats -->
+                    <div class="p-6 bg-gray-50 rounded-lg">
+                        <h3 class="text-gray-900 font-medium mb-4">統計</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-sm text-gray-600">登録植物数</span>
+                                <span class="text-sm font-medium">3</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm text-gray-600">今月の記録</span>
+                                <span class="text-sm font-medium">12</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm text-gray-600">水やり予定</span>
+                                <span class="text-sm font-medium text-accent">1</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Today's Reminder -->
-        <div class="mb-8">
+        <!-- Today's Reminder (Mobile only) -->
+        <div class="mb-8 lg:hidden">
             <div class="p-4 bg-accent/5 border border-accent/20 rounded-lg">
                 <div class="flex items-center justify-between">
                     <div>
@@ -115,8 +168,8 @@
         </div>
     </main>
 
-    <!-- Bottom Navigation -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100">
+    <!-- Bottom Navigation (Mobile only) -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 lg:hidden">
         <div class="max-w-sm mx-auto px-6">
             <div class="flex justify-around py-4">
                 <a href="index.html" class="flex flex-col items-center space-y-1">
@@ -147,7 +200,7 @@
         </div>
     </nav>
 
-    <!-- Bottom padding for navigation -->
-    <div class="h-20"></div>
+    <!-- Bottom padding for navigation (Mobile only) -->
+    <div class="h-20 lg:hidden"></div>
 </body>
 </html>
