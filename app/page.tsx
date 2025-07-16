@@ -41,9 +41,7 @@ export default function Home() {
           <h3 className="text-xl font-semibold text-plant-dark mb-2">
             成長記録
           </h3>
-          <p className="text-gray-600">
-            写真付きで植物の成長を記録・振り返り
-          </p>
+          <p className="text-gray-600">写真付きで植物の成長を記録・振り返り</p>
         </div>
       </div>
     </div>
