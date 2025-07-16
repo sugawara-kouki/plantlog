@@ -78,7 +78,7 @@
 - **ボーダー**: `border-gray-200`
 - **背景**: `bg-white`
 - **角丸**: `rounded-lg`
-- **影**: `shadow-sm`
+- **影**: `shadow-xs`
 
 ## アイコン
 

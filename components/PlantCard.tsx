@@ -41,17 +41,17 @@ export default function PlantCard({ plant }: PlantCardProps) {
       </div>
       
       {plant.notes && (
-        <div className="mt-3 p-2 bg-gray-50 rounded text-sm">
+        <div className="mt-3 p-2 bg-gray-50 rounded-sm text-sm">
           <p className="font-medium text-gray-700">メモ:</p>
           <p className="text-gray-600">{plant.notes}</p>
         </div>
       )}
       
       <div className="mt-4 flex space-x-2">
-        <button className="flex-1 bg-blue-500 text-white py-2 px-3 rounded text-sm hover:bg-blue-600 transition-colors">
+        <button className="flex-1 bg-blue-500 text-white py-2 px-3 rounded-sm text-sm hover:bg-blue-600 transition-colors">
           水やり記録
         </button>
-        <button className="flex-1 bg-gray-500 text-white py-2 px-3 rounded text-sm hover:bg-gray-600 transition-colors">
+        <button className="flex-1 bg-gray-500 text-white py-2 px-3 rounded-sm text-sm hover:bg-gray-600 transition-colors">
           編集
         </button>
       </div>

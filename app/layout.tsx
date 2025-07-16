@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="ja">
       <body className={inter.className}>
         <Header />
-        <main className="min-h-screen p-8 bg-gradient-to-br from-plant-light to-white">
+        <main className="min-h-screen p-8 bg-linear-to-br from-plant-light to-white">
           {children}
         </main>
       </body>
