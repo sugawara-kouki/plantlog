@@ -1,96 +1,36 @@
-# Plant Log - 植物日記
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Plant Log は植物の世話を管理するためのウェブアプリケーションです。
+## Getting Started
 
-## 技術スタック
-
-- **Next.js 15** - React フレームワーク
-- **TypeScript** - 型安全な JavaScript
-- **Tailwind CSS** - ユーティリティファーストの CSS フレームワーク
-- **React 18** - ユーザーインターフェース構築
-
-## 機能
-
-- 植物の基本情報管理
-- 水やりスケジュール管理
-- 植物の健康状態トラッキング
-- レスポンシブデザイン
-- 日本語対応
-
-## セットアップ
-
-### 1. 依存関係のインストール
-
-```bash
-npm install
-```
-
-### 2. 開発サーバーの起動
+First, run the development server:
 
 ```bash
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-ブラウザで [http://localhost:3000](http://localhost:3000) を開いてアプリケーションを確認できます。
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### 3. その他のコマンド
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-```bash
-# プロダクションビルド
-npm run build
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-# プロダクションサーバー起動
-npm run start
+## Learn More
 
-# TypeScript型チェック
-npm run typecheck
+To learn more about Next.js, take a look at the following resources:
 
-# ESLint実行
-npm run lint
-```
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## プロジェクト構造
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-```
-├── app/                    # Next.js 13+ App Router
-│   ├── globals.css        # グローバルスタイル
-│   ├── layout.tsx         # ルートレイアウト
-│   ├── page.tsx           # ホームページ
-│   ├── plants/            # 植物一覧ページ
-│   └── about/             # このアプリについてページ
-├── components/            # 再利用可能コンポーネント
-│   ├── Header.tsx         # ヘッダーコンポーネント
-│   └── PlantCard.tsx      # 植物カードコンポーネント
-├── types/                 # TypeScript型定義
-│   └── plant.ts           # 植物関連の型
-├── utils/                 # ユーティリティ関数
-│   ├── dateUtils.ts       # 日付関連のユーティリティ
-│   └── plantUtils.ts      # 植物関連のユーティリティ
-├── package.json           # パッケージ設定
-├── tsconfig.json          # TypeScript設定
-├── tailwind.config.js     # Tailwind CSS設定
-└── next.config.js         # Next.js設定
-```
+## Deploy on Vercel
 
-## ページルート
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-- `/` - ホームページ
-- `/plants` - 植物一覧ページ
-- `/about` - このアプリについてページ
-
-## 開発
-
-このプロジェクトは以下の設定で開発されています：
-
-- **ESLint** - コード品質チェック
-- **Prettier** - コードフォーマット
-- **TypeScript** - 型安全性
-- **Tailwind CSS** - スタイリング
-
-## 今後の拡張予定
-
-- データベース統合
-- ユーザー認証
-- 画像アップロード機能
-- プッシュ通知
-- PWA対応
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
