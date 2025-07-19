@@ -71,8 +71,8 @@ plantlog/
 ### 2. ローカル Supabase サーバー起動
 
 ```bash
-# 初回起動（Dockerイメージのダウンロードあり）
-supabase start
+# 初回起動（不要なサービスを除外して軽量化）
+supabase start -x vector -x logflare
 
 # 出力例：
 # Started supabase local development setup.
@@ -85,6 +85,10 @@ supabase start
 #            anon key: your-anon-key
 # service_role key: your-service-role-key
 ```
+
+**オプション説明:**
+- `-x vector`: ベクトル検索機能を除外（植物観察アプリでは不要）
+- `-x logflare`: ログ分析機能を除外（開発時は不要）
 
 ## データベーススキーマ設定
 
@@ -284,8 +288,8 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
 ### 基本操作
 
 ```bash
-# ローカルSupabase起動
-supabase start
+# ローカルSupabase起動（軽量化）
+supabase start -x vector -x logflare
 
 # ローカルSupabase停止
 supabase stop
@@ -350,12 +354,15 @@ supabase db pull
 
 ```bash
 # Docker デーモンが起動していない場合
-# macOS: Docker Desktopを起動
+# Colima使用時: Colimaを起動
+colima start
+
+# Docker Desktop使用時: Docker Desktopを起動
 
 # ポートが使用中の場合
 supabase stop
 docker system prune -f
-supabase start
+supabase start -x vector -x logflare
 ```
 
 #### マイグレーション関連
@@ -388,7 +395,8 @@ curl -X POST 'http://localhost:54321/auth/v1/signup' \
 1. **開発開始**
 
    ```bash
-   supabase start
+   # Supabase起動（軽量化）
+   supabase start -x vector -x logflare
    npm run dev
    ```
 
