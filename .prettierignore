@@ -1,0 +1,41 @@
+# Build outputs
+.next/
+out/
+dist/
+build/
+
+# Dependencies
+node_modules/
+
+# Environment files
+.env*
+
+# Database
+*.db
+*.sqlite
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Supabase
+supabase/.temp/
+supabase/config.toml
+supabase/migrations/
+supabase/seed.sql
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Markdown files (optional - remove if you want to format markdown)
+*.md

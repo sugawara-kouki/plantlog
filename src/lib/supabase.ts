@@ -1,22 +1,22 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables')
+  throw new Error('Missing Supabase environment variables');
 }
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
     autoRefreshToken: true,
     persistSession: true,
-    detectSessionInUrl: true
-  }
-})
+    detectSessionInUrl: true,
+  },
+});
 
 // 認証関連のヘルパー関数
-export const auth = supabase.auth
+export const auth = supabase.auth;
 
 // 型安全なテーブルアクセス
 export const db = {
@@ -25,8 +25,8 @@ export const db = {
   observationRecords: () => supabase.from('observation_records'),
   wateringRecords: () => supabase.from('watering_records'),
   photos: () => supabase.from('photos'),
-  editHistory: () => supabase.from('edit_history')
-}
+  editHistory: () => supabase.from('edit_history'),
+};
 
 // ストレージ
-export const storage = supabase.storage
+export const storage = supabase.storage;

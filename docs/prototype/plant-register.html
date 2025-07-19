@@ -1,194 +1,277 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>植物を登録 - 植物観察日記</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        accent: '#22c55e',
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'Noto Sans JP', 'sans-serif'],
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              accent: '#22c55e',
+            },
+            fontFamily: {
+              sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+            },
+          },
+        },
+      };
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;600&display=swap" rel="stylesheet">
-</head>
-<body class="bg-white min-h-screen text-gray-900 font-sans">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-white min-h-screen text-gray-900 font-sans">
     <!-- Header -->
     <header class="border-b border-gray-100">
-        <div class="max-w-sm mx-auto px-6 py-6 lg:max-w-4xl lg:px-8">
-            <div class="flex items-center justify-between">
-                <button onclick="history.back()" class="text-gray-600 hover:text-gray-900 transition-colors">
-                    ←
-                </button>
-                <h1 class="text-xl font-semibold text-gray-900 lg:text-2xl">植物を登録</h1>
-                
-                <!-- User Profile -->
-                <div class="relative">
-                    <button class="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors lg:px-3 lg:py-2 lg:border lg:border-gray-200 lg:rounded-lg lg:hover:border-accent">
-                        <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
-                            <span class="text-white text-sm font-medium">田</span>
-                        </div>
-                        <span class="hidden lg:inline text-sm font-medium">田中太郎</span>
-                        <svg class="w-4 h-4 text-gray-500 hidden lg:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    
-                    <!-- Dropdown Menu (hidden by default) -->
-                    <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-10 hidden">
-                        <div class="py-1">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">プロフィール</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">設定</a>
-                            <hr class="my-1">
-                            <a href="login.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">ログアウト</a>
-                        </div>
-                    </div>
-                </div>
+      <div class="max-w-sm mx-auto px-6 py-6 lg:max-w-4xl lg:px-8">
+        <div class="flex items-center justify-between">
+          <button
+            onclick="history.back()"
+            class="text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            ←
+          </button>
+          <h1 class="text-xl font-semibold text-gray-900 lg:text-2xl">
+            植物を登録
+          </h1>
+
+          <!-- User Profile -->
+          <div class="relative">
+            <button
+              class="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors lg:px-3 lg:py-2 lg:border lg:border-gray-200 lg:rounded-lg lg:hover:border-accent"
+            >
+              <div
+                class="w-8 h-8 bg-accent rounded-full flex items-center justify-center"
+              >
+                <span class="text-white text-sm font-medium">田</span>
+              </div>
+              <span class="hidden lg:inline text-sm font-medium">田中太郎</span>
+              <svg
+                class="w-4 h-4 text-gray-500 hidden lg:inline"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+
+            <!-- Dropdown Menu (hidden by default) -->
+            <div
+              class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-10 hidden"
+            >
+              <div class="py-1">
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >プロフィール</a
+                >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >設定</a
+                >
+                <hr class="my-1" />
+                <a
+                  href="login.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >ログアウト</a
+                >
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </header>
 
     <!-- Main Content -->
     <main class="max-w-sm mx-auto px-6 py-8 lg:max-w-4xl lg:px-8 lg:py-12">
-        <form class="space-y-12 lg:grid lg:grid-cols-2 lg:gap-12 lg:space-y-0">
-            <!-- Photo Upload -->
-            <div class="lg:col-span-1">
-                <h2 class="text-lg font-medium text-gray-900 mb-6 lg:text-xl">写真</h2>
-                <div class="border border-gray-200 rounded-lg p-8 text-center lg:p-12">
-                    <div class="w-16 h-16 bg-gray-100 rounded-full mx-auto mb-4 flex items-center justify-center lg:w-20 lg:h-20">
-                        <div class="w-2 h-2 bg-gray-400 rounded-full lg:w-3 lg:h-3"></div>
-                    </div>
-                    <button type="button" class="text-gray-900 font-medium hover:text-accent transition-colors">
-                        写真を選択
-                    </button>
-                    <p class="text-sm text-gray-500 mt-2">カメラまたはギャラリーから</p>
-                </div>
+      <form class="space-y-12 lg:grid lg:grid-cols-2 lg:gap-12 lg:space-y-0">
+        <!-- Photo Upload -->
+        <div class="lg:col-span-1">
+          <h2 class="text-lg font-medium text-gray-900 mb-6 lg:text-xl">
+            写真
+          </h2>
+          <div
+            class="border border-gray-200 rounded-lg p-8 text-center lg:p-12"
+          >
+            <div
+              class="w-16 h-16 bg-gray-100 rounded-full mx-auto mb-4 flex items-center justify-center lg:w-20 lg:h-20"
+            >
+              <div class="w-2 h-2 bg-gray-400 rounded-full lg:w-3 lg:h-3"></div>
+            </div>
+            <button
+              type="button"
+              class="text-gray-900 font-medium hover:text-accent transition-colors"
+            >
+              写真を選択
+            </button>
+            <p class="text-sm text-gray-500 mt-2">カメラまたはギャラリーから</p>
+          </div>
+        </div>
+
+        <!-- Plant Information -->
+        <div class="lg:col-span-1">
+          <h2 class="text-lg font-medium text-gray-900 mb-6 lg:text-xl">
+            基本情報
+          </h2>
+
+          <div class="space-y-8">
+            <!-- Plant Name -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >植物名</label
+              >
+              <input
+                type="text"
+                placeholder="例: モンステラ"
+                class="w-full px-0 py-3 border-0 border-b border-gray-200 focus:border-accent focus:outline-hidden focus:ring-0 placeholder-gray-400"
+              />
             </div>
 
-            <!-- Plant Information -->
-            <div class="lg:col-span-1">
-                <h2 class="text-lg font-medium text-gray-900 mb-6 lg:text-xl">基本情報</h2>
-                
-                <div class="space-y-8">
-                    <!-- Plant Name -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">植物名</label>
-                        <input type="text" 
-                               placeholder="例: モンステラ" 
-                               class="w-full px-0 py-3 border-0 border-b border-gray-200 focus:border-accent focus:outline-hidden focus:ring-0 placeholder-gray-400">
-                    </div>
-
-                    <!-- Plant Type -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">種類</label>
-                        <select class="w-full px-0 py-3 border-0 border-b border-gray-200 focus:border-accent focus:outline-hidden focus:ring-0 text-gray-900">
-                            <option value="">選択してください</option>
-                            <option value="モンステラ">モンステラ</option>
-                            <option value="サンセベリア">サンセベリア</option>
-                            <option value="フィカス">フィカス</option>
-                            <option value="ポトス">ポトス</option>
-                            <option value="その他">その他</option>
-                        </select>
-                    </div>
-
-                    <!-- Purchase Date -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">購入日</label>
-                        <input type="date" 
-                               class="w-full px-0 py-3 border-0 border-b border-gray-200 focus:border-accent focus:outline-hidden focus:ring-0">
-                    </div>
-
-                    <!-- Initial Height -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">高さ（任意）</label>
-                        <div class="flex items-center">
-                            <input type="number" 
-                                   placeholder="15" 
-                                   class="flex-1 px-0 py-3 border-0 border-b border-gray-200 focus:border-accent focus:outline-hidden focus:ring-0 placeholder-gray-400">
-                            <span class="text-gray-500 ml-3">cm</span>
-                        </div>
-                    </div>
-
-                    <!-- Notes -->
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">メモ（任意）</label>
-                        <textarea placeholder="植物の特徴や購入した理由など..." 
-                                  rows="3"
-                                  class="w-full px-0 py-3 border-0 border-b border-gray-200 focus:border-accent focus:outline-hidden focus:ring-0 resize-none placeholder-gray-400"></textarea>
-                    </div>
-                </div>
+            <!-- Plant Type -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >種類</label
+              >
+              <select
+                class="w-full px-0 py-3 border-0 border-b border-gray-200 focus:border-accent focus:outline-hidden focus:ring-0 text-gray-900"
+              >
+                <option value="">選択してください</option>
+                <option value="モンステラ">モンステラ</option>
+                <option value="サンセベリア">サンセベリア</option>
+                <option value="フィカス">フィカス</option>
+                <option value="ポトス">ポトス</option>
+                <option value="その他">その他</option>
+              </select>
             </div>
 
-            <!-- Water Schedule -->
-            <div class="lg:col-span-2">
-                <h2 class="text-lg font-medium text-gray-900 mb-6 lg:text-xl">水やり設定</h2>
-                
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">水やりの頻度</label>
-                    <select class="w-full px-0 py-3 border-0 border-b border-gray-200 focus:border-accent focus:outline-hidden focus:ring-0 text-gray-900">
-                        <option value="3">3日に1回</option>
-                        <option value="5">5日に1回</option>
-                        <option value="7">1週間に1回</option>
-                        <option value="10">10日に1回</option>
-                        <option value="14">2週間に1回</option>
-                    </select>
-                </div>
+            <!-- Purchase Date -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >購入日</label
+              >
+              <input
+                type="date"
+                class="w-full px-0 py-3 border-0 border-b border-gray-200 focus:border-accent focus:outline-hidden focus:ring-0"
+              />
             </div>
 
-            <!-- Submit Button -->
-            <div class="pt-8 lg:col-span-2">
-                <button type="submit" 
-                        class="w-full bg-accent text-white py-4 rounded-lg hover:bg-accent/90 transition-colors font-medium lg:max-w-xs lg:mx-auto lg:block">
-                    登録する
-                </button>
+            <!-- Initial Height -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >高さ（任意）</label
+              >
+              <div class="flex items-center">
+                <input
+                  type="number"
+                  placeholder="15"
+                  class="flex-1 px-0 py-3 border-0 border-b border-gray-200 focus:border-accent focus:outline-hidden focus:ring-0 placeholder-gray-400"
+                />
+                <span class="text-gray-500 ml-3">cm</span>
+              </div>
             </div>
-        </form>
+
+            <!-- Notes -->
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2"
+                >メモ（任意）</label
+              >
+              <textarea
+                placeholder="植物の特徴や購入した理由など..."
+                rows="3"
+                class="w-full px-0 py-3 border-0 border-b border-gray-200 focus:border-accent focus:outline-hidden focus:ring-0 resize-none placeholder-gray-400"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Water Schedule -->
+        <div class="lg:col-span-2">
+          <h2 class="text-lg font-medium text-gray-900 mb-6 lg:text-xl">
+            水やり設定
+          </h2>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2"
+              >水やりの頻度</label
+            >
+            <select
+              class="w-full px-0 py-3 border-0 border-b border-gray-200 focus:border-accent focus:outline-hidden focus:ring-0 text-gray-900"
+            >
+              <option value="3">3日に1回</option>
+              <option value="5">5日に1回</option>
+              <option value="7">1週間に1回</option>
+              <option value="10">10日に1回</option>
+              <option value="14">2週間に1回</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-8 lg:col-span-2">
+          <button
+            type="submit"
+            class="w-full bg-accent text-white py-4 rounded-lg hover:bg-accent/90 transition-colors font-medium lg:max-w-xs lg:mx-auto lg:block"
+          >
+            登録する
+          </button>
+        </div>
+      </form>
     </main>
 
     <!-- Bottom Navigation (Mobile only) -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 lg:hidden">
-        <div class="max-w-sm mx-auto px-6">
-            <div class="flex justify-around py-4">
-                <a href="index.html" class="flex flex-col items-center space-y-1">
-                    <div class="w-6 h-6 flex items-center justify-center">
-                        <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
-                    </div>
-                    <span class="text-xs text-gray-500">ホーム</span>
-                </a>
-                <a href="plant-list.html" class="flex flex-col items-center space-y-1">
-                    <div class="w-6 h-6 flex items-center justify-center">
-                        <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
-                    </div>
-                    <span class="text-xs text-gray-500">植物</span>
-                </a>
-                <a href="diary-entry.html" class="flex flex-col items-center space-y-1">
-                    <div class="w-6 h-6 flex items-center justify-center">
-                        <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
-                    </div>
-                    <span class="text-xs text-gray-500">記録</span>
-                </a>
-                <a href="watering.html" class="flex flex-col items-center space-y-1">
-                    <div class="w-6 h-6 flex items-center justify-center">
-                        <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
-                    </div>
-                    <span class="text-xs text-gray-500">水やり</span>
-                </a>
+    <nav
+      class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 lg:hidden"
+    >
+      <div class="max-w-sm mx-auto px-6">
+        <div class="flex justify-around py-4">
+          <a href="index.html" class="flex flex-col items-center space-y-1">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
             </div>
+            <span class="text-xs text-gray-500">ホーム</span>
+          </a>
+          <a
+            href="plant-list.html"
+            class="flex flex-col items-center space-y-1"
+          >
+            <div class="w-6 h-6 flex items-center justify-center">
+              <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+            </div>
+            <span class="text-xs text-gray-500">植物</span>
+          </a>
+          <a
+            href="diary-entry.html"
+            class="flex flex-col items-center space-y-1"
+          >
+            <div class="w-6 h-6 flex items-center justify-center">
+              <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+            </div>
+            <span class="text-xs text-gray-500">記録</span>
+          </a>
+          <a href="watering.html" class="flex flex-col items-center space-y-1">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+            </div>
+            <span class="text-xs text-gray-500">水やり</span>
+          </a>
         </div>
+      </div>
     </nav>
 
     <!-- Bottom padding for navigation (Mobile only) -->
     <div class="h-20 lg:hidden"></div>
-</body>
+  </body>
 </html>

@@ -1,205 +1,275 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>水やり管理 - 植物観察日記</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        accent: '#22c55e',
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'Noto Sans JP', 'sans-serif'],
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              accent: '#22c55e',
+            },
+            fontFamily: {
+              sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+            },
+          },
+        },
+      };
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;600&display=swap" rel="stylesheet">
-</head>
-<body class="bg-white min-h-screen text-gray-900 font-sans">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-white min-h-screen text-gray-900 font-sans">
     <!-- Header -->
     <header class="border-b border-gray-100">
-        <div class="max-w-sm mx-auto px-6 py-6 lg:max-w-6xl lg:px-8">
-            <div class="flex items-center justify-between">
-                <button onclick="history.back()" class="text-gray-600 hover:text-gray-900 transition-colors">
-                    ←
-                </button>
-                <h1 class="text-xl font-semibold text-gray-900 lg:text-2xl">水やり管理</h1>
-                
-                <!-- User Profile -->
-                <div class="relative">
-                    <button class="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors lg:px-3 lg:py-2 lg:border lg:border-gray-200 lg:rounded-lg lg:hover:border-accent">
-                        <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
-                            <span class="text-white text-sm font-medium">田</span>
-                        </div>
-                        <span class="hidden lg:inline text-sm font-medium">田中太郎</span>
-                        <svg class="w-4 h-4 text-gray-500 hidden lg:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                    
-                    <!-- Dropdown Menu (hidden by default) -->
-                    <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-10 hidden">
-                        <div class="py-1">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">プロフィール</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">設定</a>
-                            <hr class="my-1">
-                            <a href="login.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">ログアウト</a>
-                        </div>
-                    </div>
-                </div>
+      <div class="max-w-sm mx-auto px-6 py-6 lg:max-w-6xl lg:px-8">
+        <div class="flex items-center justify-between">
+          <button
+            onclick="history.back()"
+            class="text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            ←
+          </button>
+          <h1 class="text-xl font-semibold text-gray-900 lg:text-2xl">
+            水やり管理
+          </h1>
+
+          <!-- User Profile -->
+          <div class="relative">
+            <button
+              class="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors lg:px-3 lg:py-2 lg:border lg:border-gray-200 lg:rounded-lg lg:hover:border-accent"
+            >
+              <div
+                class="w-8 h-8 bg-accent rounded-full flex items-center justify-center"
+              >
+                <span class="text-white text-sm font-medium">田</span>
+              </div>
+              <span class="hidden lg:inline text-sm font-medium">田中太郎</span>
+              <svg
+                class="w-4 h-4 text-gray-500 hidden lg:inline"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+
+            <!-- Dropdown Menu (hidden by default) -->
+            <div
+              class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-10 hidden"
+            >
+              <div class="py-1">
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >プロフィール</a
+                >
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >設定</a
+                >
+                <hr class="my-1" />
+                <a
+                  href="login.html"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >ログアウト</a
+                >
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </header>
 
     <!-- Main Content -->
     <main class="max-w-sm mx-auto px-6 py-8 lg:max-w-6xl lg:px-8 lg:py-12">
-        <!-- Today's Reminder -->
-        <div class="mb-12">
-            <div class="p-4 bg-accent/5 border border-accent/20 rounded-lg lg:p-6">
-                <div class="flex items-center justify-between lg:flex-col lg:items-start lg:space-y-4">
-                    <div>
-                        <h3 class="text-gray-900 font-medium mb-1 lg:text-lg">今日のお知らせ</h3>
-                        <p class="text-sm text-gray-600">モンステラの水やり時期です</p>
-                    </div>
-                    <button class="px-4 py-2 bg-accent text-white text-sm rounded-lg hover:bg-accent/90 transition-colors lg:self-end">
-                        完了
-                    </button>
-                </div>
+      <!-- Today's Reminder -->
+      <div class="mb-12">
+        <div class="p-4 bg-accent/5 border border-accent/20 rounded-lg lg:p-6">
+          <div
+            class="flex items-center justify-between lg:flex-col lg:items-start lg:space-y-4"
+          >
+            <div>
+              <h3 class="text-gray-900 font-medium mb-1 lg:text-lg">
+                今日のお知らせ
+              </h3>
+              <p class="text-sm text-gray-600">モンステラの水やり時期です</p>
             </div>
+            <button
+              class="px-4 py-2 bg-accent text-white text-sm rounded-lg hover:bg-accent/90 transition-colors lg:self-end"
+            >
+              完了
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Plants -->
+      <div class="mb-12 lg:flex lg:gap-8">
+        <div class="lg:flex-1">
+          <h2 class="text-lg font-medium text-gray-900 mb-6 lg:text-xl">
+            植物
+          </h2>
+
+          <div class="space-y-4 lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0">
+            <!-- Plant Item -->
+            <div class="py-4 lg:p-6 lg:border lg:border-gray-200 lg:rounded-lg">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-gray-900 font-medium">モンステラ</h3>
+                <span class="text-sm text-gray-500">2024.01.15</span>
+              </div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-sm text-gray-600">最終記録: 3日前</span>
+                <span
+                  class="text-xs text-accent bg-accent/10 px-2 py-1 rounded-full"
+                  >水やり予定</span
+                >
+              </div>
+              <button
+                class="w-full bg-accent text-white py-2 rounded-lg hover:bg-accent/90 transition-colors text-sm lg:mt-2"
+              >
+                水やり完了
+              </button>
+            </div>
+
+            <!-- Plant Item -->
+            <div
+              class="py-4 border-t border-gray-100 lg:p-6 lg:border lg:border-gray-200 lg:rounded-lg lg:border-t-0"
+            >
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-gray-900 font-medium">サンセベリア</h3>
+                <span class="text-sm text-gray-500">2024.02.01</span>
+              </div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-sm text-gray-600">最終記録: 1日前</span>
+                <span
+                  class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-full"
+                  >元気</span
+                >
+              </div>
+              <span class="text-xs text-gray-500 lg:block"
+                >次の水やり: 2日後</span
+              >
+            </div>
+
+            <!-- Plant Item -->
+            <div
+              class="py-4 border-t border-gray-100 lg:p-6 lg:border lg:border-gray-200 lg:rounded-lg lg:border-t-0"
+            >
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-gray-900 font-medium">ポトス</h3>
+                <span class="text-sm text-gray-500">2024.02.10</span>
+              </div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-sm text-gray-600">最終記録: 5日前</span>
+                <span
+                  class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-full"
+                  >普通</span
+                >
+              </div>
+              <span class="text-xs text-gray-500 lg:block"
+                >次の水やり: 明日</span
+              >
+            </div>
+          </div>
         </div>
 
-        <!-- Plants -->
-        <div class="mb-12 lg:flex lg:gap-8">
-            <div class="lg:flex-1">
-                <h2 class="text-lg font-medium text-gray-900 mb-6 lg:text-xl">植物</h2>
-                
-                <div class="space-y-4 lg:grid lg:grid-cols-2 lg:gap-6 lg:space-y-0">
-                    <!-- Plant Item -->
-                    <div class="py-4 lg:p-6 lg:border lg:border-gray-200 lg:rounded-lg">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-gray-900 font-medium">モンステラ</h3>
-                            <span class="text-sm text-gray-500">2024.01.15</span>
-                        </div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-sm text-gray-600">最終記録: 3日前</span>
-                            <span class="text-xs text-accent bg-accent/10 px-2 py-1 rounded-full">水やり予定</span>
-                        </div>
-                        <button class="w-full bg-accent text-white py-2 rounded-lg hover:bg-accent/90 transition-colors text-sm lg:mt-2">
-                            水やり完了
-                        </button>
-                    </div>
-
-                    <!-- Plant Item -->
-                    <div class="py-4 border-t border-gray-100 lg:p-6 lg:border lg:border-gray-200 lg:rounded-lg lg:border-t-0">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-gray-900 font-medium">サンセベリア</h3>
-                            <span class="text-sm text-gray-500">2024.02.01</span>
-                        </div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-sm text-gray-600">最終記録: 1日前</span>
-                            <span class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-full">元気</span>
-                        </div>
-                        <span class="text-xs text-gray-500 lg:block">次の水やり: 2日後</span>
-                    </div>
-
-                    <!-- Plant Item -->
-                    <div class="py-4 border-t border-gray-100 lg:p-6 lg:border lg:border-gray-200 lg:rounded-lg lg:border-t-0">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-gray-900 font-medium">ポトス</h3>
-                            <span class="text-sm text-gray-500">2024.02.10</span>
-                        </div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="text-sm text-gray-600">最終記録: 5日前</span>
-                            <span class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-full">普通</span>
-                        </div>
-                        <span class="text-xs text-gray-500 lg:block">次の水やり: 明日</span>
-                    </div>
+        <!-- Sidebar for PC -->
+        <div class="hidden lg:block lg:w-80">
+          <div class="space-y-6">
+            <!-- Water Schedule -->
+            <div class="p-6 bg-gray-50 rounded-lg">
+              <h3 class="text-gray-900 font-medium mb-4">水やりスケジュール</h3>
+              <div class="space-y-3">
+                <div class="flex justify-between">
+                  <span class="text-sm text-gray-600">今日</span>
+                  <span class="text-sm font-medium text-accent">1件</span>
                 </div>
-            </div>
-            
-            <!-- Sidebar for PC -->
-            <div class="hidden lg:block lg:w-80">
-                <div class="space-y-6">
-                    <!-- Water Schedule -->
-                    <div class="p-6 bg-gray-50 rounded-lg">
-                        <h3 class="text-gray-900 font-medium mb-4">水やりスケジュール</h3>
-                        <div class="space-y-3">
-                            <div class="flex justify-between">
-                                <span class="text-sm text-gray-600">今日</span>
-                                <span class="text-sm font-medium text-accent">1件</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-sm text-gray-600">明日</span>
-                                <span class="text-sm font-medium">1件</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-sm text-gray-600">今週</span>
-                                <span class="text-sm font-medium">3件</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Quick Stats -->
-                    <div class="p-6 bg-blue-50 rounded-lg">
-                        <h3 class="text-gray-900 font-medium mb-4">水やり統計</h3>
-                        <div class="space-y-3">
-                            <div class="flex justify-between">
-                                <span class="text-sm text-gray-600">今月の回数</span>
-                                <span class="text-sm font-medium">15回</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-sm text-gray-600">総水やり回数</span>
-                                <span class="text-sm font-medium">89回</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="flex justify-between">
+                  <span class="text-sm text-gray-600">明日</span>
+                  <span class="text-sm font-medium">1件</span>
                 </div>
+                <div class="flex justify-between">
+                  <span class="text-sm text-gray-600">今週</span>
+                  <span class="text-sm font-medium">3件</span>
+                </div>
+              </div>
             </div>
+
+            <!-- Quick Stats -->
+            <div class="p-6 bg-blue-50 rounded-lg">
+              <h3 class="text-gray-900 font-medium mb-4">水やり統計</h3>
+              <div class="space-y-3">
+                <div class="flex justify-between">
+                  <span class="text-sm text-gray-600">今月の回数</span>
+                  <span class="text-sm font-medium">15回</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-sm text-gray-600">総水やり回数</span>
+                  <span class="text-sm font-medium">89回</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
+      </div>
     </main>
 
     <!-- Bottom Navigation (Mobile only) -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 lg:hidden">
-        <div class="max-w-sm mx-auto px-6">
-            <div class="flex justify-around py-4">
-                <a href="index.html" class="flex flex-col items-center space-y-1">
-                    <div class="w-6 h-6 flex items-center justify-center">
-                        <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
-                    </div>
-                    <span class="text-xs text-gray-500">ホーム</span>
-                </a>
-                <a href="plant-list.html" class="flex flex-col items-center space-y-1">
-                    <div class="w-6 h-6 flex items-center justify-center">
-                        <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
-                    </div>
-                    <span class="text-xs text-gray-500">植物</span>
-                </a>
-                <a href="diary-entry.html" class="flex flex-col items-center space-y-1">
-                    <div class="w-6 h-6 flex items-center justify-center">
-                        <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
-                    </div>
-                    <span class="text-xs text-gray-500">記録</span>
-                </a>
-                <a href="watering.html" class="flex flex-col items-center space-y-1">
-                    <div class="w-6 h-6 flex items-center justify-center">
-                        <div class="w-2 h-2 bg-accent rounded-full"></div>
-                    </div>
-                    <span class="text-xs text-gray-900">水やり</span>
-                </a>
+    <nav
+      class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 lg:hidden"
+    >
+      <div class="max-w-sm mx-auto px-6">
+        <div class="flex justify-around py-4">
+          <a href="index.html" class="flex flex-col items-center space-y-1">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
             </div>
+            <span class="text-xs text-gray-500">ホーム</span>
+          </a>
+          <a
+            href="plant-list.html"
+            class="flex flex-col items-center space-y-1"
+          >
+            <div class="w-6 h-6 flex items-center justify-center">
+              <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+            </div>
+            <span class="text-xs text-gray-500">植物</span>
+          </a>
+          <a
+            href="diary-entry.html"
+            class="flex flex-col items-center space-y-1"
+          >
+            <div class="w-6 h-6 flex items-center justify-center">
+              <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+            </div>
+            <span class="text-xs text-gray-500">記録</span>
+          </a>
+          <a href="watering.html" class="flex flex-col items-center space-y-1">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <div class="w-2 h-2 bg-accent rounded-full"></div>
+            </div>
+            <span class="text-xs text-gray-900">水やり</span>
+          </a>
         </div>
+      </div>
     </nav>
 
     <!-- Bottom padding for navigation (Mobile only) -->
     <div class="h-20 lg:hidden"></div>
-</body>
+  </body>
 </html>

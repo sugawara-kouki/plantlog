@@ -192,6 +192,259 @@ plantlog/
 - CSRF対策
 - 機密情報の環境変数化
 
+## コーディングルール
+
+### ファイル・ディレクトリ構成
+
+#### ディレクトリ命名
+- **kebab-case** を使用：`user-profile`、`admin-panel`
+- 複数形は必要に応じて：`components`、`utils`、`types`
+
+#### ファイル命名
+- **コンポーネント**: PascalCase + `.tsx` → `UserProfile.tsx`
+- **ページ**: kebab-case + `.tsx` → `user-profile.tsx`
+- **ユーティリティ**: camelCase + `.ts` → `formatDate.ts`
+- **型定義**: PascalCase + `.types.ts` → `User.types.ts`
+
+```
+src/
+├── app/           # App Router
+├── components/    # 再利用可能なコンポーネント
+├── lib/          # ユーティリティ・設定
+├── types/        # 型定義
+└── hooks/        # カスタムフック
+```
+
+### コンポーネント設計
+
+#### 責務の分離
+コンポーネントは**単一責任の原則**に従って分割する
+
+```tsx
+// ✅ 良い例：責務ごとに分割
+function UserDashboard() {
+  return (
+    <div>
+      <UserProfile />
+      <UserSettings />
+      <NotificationList />
+    </div>
+  )
+}
+```
+
+#### コンポーネントの分類
+- **Page Component**: ページ全体を管理（App Routerのpage.tsx）
+- **Layout Component**: 共通レイアウト
+- **Feature Component**: 機能単位のコンポーネント
+- **UI Component**: 汎用的なUIパーツ
+
+### TypeScript活用
+
+#### 型定義の基本
+```tsx
+// propsの型は必ず定義
+interface UserCardProps {
+  user: User
+  onEdit?: (userId: string) => void
+  showActions?: boolean
+}
+
+// 状態の型も明確に
+interface FormState {
+  isLoading: boolean
+  error: string | null
+  data: User | null
+}
+```
+
+#### 型安全なAPI呼び出し
+```tsx
+// APIレスポンスの型を定義
+interface ApiResponse<T> {
+  data: T
+  message: string
+  success: boolean
+}
+
+// 使用例
+const fetchUser = async (id: string): Promise<ApiResponse<User>> => {
+  const response = await fetch(`/api/users/${id}`)
+  return response.json()
+}
+```
+
+### Hooks活用
+
+#### カスタムHooksで関心の分離
+```tsx
+// データ取得ロジックを分離
+function useUserData(userId: string) {
+  const [user, setUser] = useState<User | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    // データ取得ロジック
+  }, [userId])
+
+  return { user, loading }
+}
+
+// コンポーネントはUIに集中
+function UserProfile({ userId }: Props) {
+  const { user, loading } = useUserData(userId)
+  
+  if (loading) return <Skeleton />
+  return <div>{user?.name}</div>
+}
+```
+
+### App Router活用
+
+#### ページコンポーネントの構成
+```tsx
+// app/users/[id]/page.tsx
+interface PageProps {
+  params: { id: string }
+  searchParams: { [key: string]: string | undefined }
+}
+
+export default function UserPage({ params }: PageProps) {
+  return (
+    <main>
+      <UserProfile userId={params.id} />
+    </main>
+  )
+}
+
+// メタデータも忘れずに
+export function generateMetadata({ params }: PageProps) {
+  return {
+    title: `ユーザー ${params.id} のプロフィール`
+  }
+}
+```
+
+#### Loading・Error・Not Foundの活用
+```tsx
+// loading.tsx - ページ読み込み中
+export default function Loading() {
+  return <ProfileSkeleton />
+}
+
+// error.tsx - エラーハンドリング
+export default function Error({ error }: { error: Error }) {
+  return <ErrorMessage message={error.message} />
+}
+
+// not-found.tsx - 404対応
+export default function NotFound() {
+  return <div>ユーザーが見つかりません</div>
+}
+```
+
+### パフォーマンス最適化
+
+#### コンポーネントの最適化
+```tsx
+// React.memoで不要な再描画を防ぐ
+const UserCard = memo(function UserCard({ user, onClick }: Props) {
+  return (
+    <div onClick={() => onClick(user.id)}>
+      {user.name}
+    </div>
+  )
+})
+
+// 重い処理はuseMemoで
+function UserList({ users, searchTerm }: Props) {
+  const filteredUsers = useMemo(() => {
+    return users.filter(user => 
+      user.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  }, [users, searchTerm])
+
+  return <div>{filteredUsers.map(user => <UserCard key={user.id} user={user} />)}</div>
+}
+```
+
+#### 画像最適化
+```tsx
+import Image from 'next/image'
+
+// Next.jsのImageコンポーネントを活用
+<Image
+  src={user.avatar}
+  alt={`${user.name}のアバター`}
+  width={100}
+  height={100}
+  priority // 重要な画像は優先読み込み
+/>
+```
+
+### スタイリング
+
+#### Tailwind CSS活用
+```tsx
+// 本プロジェクトはTailwind CSS v4を使用
+function UserCard() {
+  return <div className="bg-white p-4 rounded-lg shadow">...</div>
+}
+```
+
+### エラーハンドリング
+
+#### Error Boundaryの活用
+```tsx
+// components/ErrorBoundary.tsx
+export function ErrorBoundary({ children }: { children: React.ReactNode }) {
+  return (
+    <ErrorBoundary fallback={<ErrorFallback />}>
+      {children}
+    </ErrorBoundary>
+  )
+}
+
+// 使用例
+function App() {
+  return (
+    <ErrorBoundary>
+      <UserDashboard />
+    </ErrorBoundary>
+  )
+}
+```
+
+### コメント規則
+
+#### 書くべきコメント
+1. **なぜ**そのコードが必要なのか
+2. **複雑な処理**の説明
+3. **外部依存**や**制限事項**
+4. **TODO**や**FIXME**
+
+```tsx
+/**
+ * 植物プロフィール編集コンポーネント
+ * 
+ * NOTE: 画像は1MB以下に制限（サーバー側制限）
+ * TODO: バリデーションエラーのトースト表示を追加
+ */
+export function PlantEditor({ plantId }: Props) {
+  // フォームの送信状態を管理
+  // APIコール中は重複送信を防ぐ必要がある
+  const [isSubmitting, setIsSubmitting] = useState(false)
+}
+```
+
+### コミット前チェックリスト
+- [ ] **TypeScriptエラー**がないか
+- [ ] **ESLint警告**を解消したか
+- [ ] **必要なコメント**を書いたか
+- [ ] **責務が適切に分離**されているか
+- [ ] **パフォーマンス**に問題ないか
+- [ ] **アクセシビリティ**を考慮したか
+
 ## 環境変数
 
 ```env

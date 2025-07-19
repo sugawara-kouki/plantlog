@@ -1,352 +1,639 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>植物観察日記</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#22c55e',
-                        'primary-light': '#22c55e0a',
-                        'primary-dark': '#16a34a',
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'Noto Sans JP', 'sans-serif'],
-                    },
-                    boxShadow: {
-                        'card': '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
-                        'card-hover': '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#22c55e',
+              'primary-light': '#22c55e0a',
+              'primary-dark': '#16a34a',
+            },
+            fontFamily: {
+              sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+            },
+            boxShadow: {
+              card: '0 1px 3px 0 rgba(0, 0, 0, 0.1)',
+              'card-hover': '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+            },
+          },
+        },
+      };
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;600&display=swap" rel="stylesheet">
-</head>
-<body class="bg-gray-50 min-h-screen text-gray-900 font-sans">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-50 min-h-screen text-gray-900 font-sans">
     <!-- Header -->
     <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
-        <div class="max-w-sm mx-auto px-4 py-4 lg:max-w-6xl lg:px-8 lg:py-6">
-            <div class="flex items-center justify-between">
-                <!-- Logo & Title -->
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center lg:w-12 lg:h-12">
-                        <svg class="w-6 h-6 text-white lg:w-7 lg:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a4 4 0 004-4V5z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h1 class="text-xl font-semibold text-gray-900 lg:text-2xl">植物観察日記</h1>
-                        <p class="text-xs text-gray-500 lg:text-sm">Plant Care Journal</p>
-                    </div>
-                </div>
-                
-                <!-- Desktop Navigation -->
-                <nav class="hidden lg:flex lg:items-center lg:space-x-6">
-                    <a href="#" class="text-gray-700 hover:text-primary transition-colors font-medium">ダッシュボード</a>
-                    <a href="#" class="text-gray-700 hover:text-primary transition-colors font-medium">植物一覧</a>
-                    <a href="#" class="text-gray-700 hover:text-primary transition-colors font-medium">記録</a>
-                    <a href="#" class="text-gray-700 hover:text-primary transition-colors font-medium">水やり</a>
-                </nav>
-                
-                <!-- User Profile -->
-                <div class="relative">
-                    <button class="flex items-center space-x-2 text-gray-700 hover:text-primary transition-colors lg:px-3 lg:py-2 lg:border lg:border-gray-200 lg:rounded-lg lg:hover:border-primary">
-                        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                            <span class="text-white text-sm font-medium">田</span>
-                        </div>
-                        <span class="hidden lg:inline text-sm font-medium">田中太郎</span>
-                        <svg class="w-4 h-4 text-gray-500 hidden lg:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                        </svg>
-                    </button>
-                </div>
+      <div class="max-w-sm mx-auto px-4 py-4 lg:max-w-6xl lg:px-8 lg:py-6">
+        <div class="flex items-center justify-between">
+          <!-- Logo & Title -->
+          <div class="flex items-center space-x-3">
+            <div
+              class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center lg:w-12 lg:h-12"
+            >
+              <svg
+                class="w-6 h-6 text-white lg:w-7 lg:h-7"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a4 4 0 004-4V5z"
+                />
+              </svg>
             </div>
+            <div>
+              <h1 class="text-xl font-semibold text-gray-900 lg:text-2xl">
+                植物観察日記
+              </h1>
+              <p class="text-xs text-gray-500 lg:text-sm">Plant Care Journal</p>
+            </div>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <nav class="hidden lg:flex lg:items-center lg:space-x-6">
+            <a
+              href="#"
+              class="text-gray-700 hover:text-primary transition-colors font-medium"
+              >ダッシュボード</a
+            >
+            <a
+              href="#"
+              class="text-gray-700 hover:text-primary transition-colors font-medium"
+              >植物一覧</a
+            >
+            <a
+              href="#"
+              class="text-gray-700 hover:text-primary transition-colors font-medium"
+              >記録</a
+            >
+            <a
+              href="#"
+              class="text-gray-700 hover:text-primary transition-colors font-medium"
+              >水やり</a
+            >
+          </nav>
+
+          <!-- User Profile -->
+          <div class="relative">
+            <button
+              class="flex items-center space-x-2 text-gray-700 hover:text-primary transition-colors lg:px-3 lg:py-2 lg:border lg:border-gray-200 lg:rounded-lg lg:hover:border-primary"
+            >
+              <div
+                class="w-8 h-8 bg-primary rounded-full flex items-center justify-center"
+              >
+                <span class="text-white text-sm font-medium">田</span>
+              </div>
+              <span class="hidden lg:inline text-sm font-medium">田中太郎</span>
+              <svg
+                class="w-4 h-4 text-gray-500 hidden lg:inline"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
+      </div>
     </header>
 
     <!-- Main Content -->
     <main class="max-w-sm mx-auto px-4 py-6 lg:max-w-6xl lg:px-8 lg:py-8">
-        <!-- Welcome Section -->
-        <div class="mb-8">
-            <div class="bg-linear-to-r from-primary to-primary-dark text-white rounded-2xl p-6 lg:p-8">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h2 class="text-xl font-semibold mb-2 lg:text-2xl">おはようございます！</h2>
-                        <p class="text-white/90 text-sm lg:text-base">今日も植物たちの様子を確認しましょう</p>
-                    </div>
-                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center lg:w-20 lg:h-20">
-                        <svg class="w-8 h-8 text-white lg:w-10 lg:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
-                        </svg>
-                    </div>
-                </div>
+      <!-- Welcome Section -->
+      <div class="mb-8">
+        <div
+          class="bg-linear-to-r from-primary to-primary-dark text-white rounded-2xl p-6 lg:p-8"
+        >
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="text-xl font-semibold mb-2 lg:text-2xl">
+                おはようございます！
+              </h2>
+              <p class="text-white/90 text-sm lg:text-base">
+                今日も植物たちの様子を確認しましょう
+              </p>
             </div>
+            <div
+              class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center lg:w-20 lg:h-20"
+            >
+              <svg
+                class="w-8 h-8 text-white lg:w-10 lg:h-10"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <!-- Quick Actions -->
-        <div class="mb-8 lg:hidden">
-            <div class="grid grid-cols-2 gap-4">
-                <button class="bg-white p-4 rounded-xl border border-gray-200 hover:border-primary transition-colors shadow-card hover:shadow-card-hover">
-                    <div class="flex flex-col items-center space-y-2">
-                        <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-                            </svg>
-                        </div>
-                        <span class="text-sm font-medium text-gray-900">植物を登録</span>
-                    </div>
-                </button>
-                <button class="bg-white p-4 rounded-xl border border-gray-200 hover:border-primary transition-colors shadow-card hover:shadow-card-hover">
-                    <div class="flex flex-col items-center space-y-2">
-                        <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
-                            </svg>
-                        </div>
-                        <span class="text-sm font-medium text-gray-900">記録する</span>
-                    </div>
-                </button>
+      <!-- Quick Actions -->
+      <div class="mb-8 lg:hidden">
+        <div class="grid grid-cols-2 gap-4">
+          <button
+            class="bg-white p-4 rounded-xl border border-gray-200 hover:border-primary transition-colors shadow-card hover:shadow-card-hover"
+          >
+            <div class="flex flex-col items-center space-y-2">
+              <div
+                class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-primary"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+              </div>
+              <span class="text-sm font-medium text-gray-900">植物を登録</span>
             </div>
+          </button>
+          <button
+            class="bg-white p-4 rounded-xl border border-gray-200 hover:border-primary transition-colors shadow-card hover:shadow-card-hover"
+          >
+            <div class="flex flex-col items-center space-y-2">
+              <div
+                class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-primary"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                  />
+                </svg>
+              </div>
+              <span class="text-sm font-medium text-gray-900">記録する</span>
+            </div>
+          </button>
         </div>
+      </div>
 
-        <!-- Main Content Grid -->
-        <div class="lg:grid lg:grid-cols-3 lg:gap-8">
-            <!-- Left Column - Main Content -->
-            <div class="lg:col-span-2">
-                <!-- Today's Tasks -->
-                <div class="mb-8">
-                    <div class="bg-primary/5 border border-primary/20 rounded-xl p-6">
-                        <div class="flex items-start justify-between mb-4">
-                            <div>
-                                <h3 class="text-lg font-semibold text-gray-900 mb-2">今日のタスク</h3>
-                                <p class="text-sm text-gray-600">水やりが必要な植物があります</p>
-                            </div>
-                            <div class="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
-                                <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-2">
-                                <div class="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4z"/>
-                                    </svg>
-                                </div>
-                                <span class="text-gray-900 font-medium">モンステラ</span>
-                            </div>
-                            <button class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors text-sm font-medium">
-                                完了
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- My Plants -->
-                <div class="mb-8">
-                    <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-lg font-semibold text-gray-900 lg:text-xl">私の植物</h3>
-                        <button class="text-primary hover:text-primary-dark transition-colors text-sm font-medium">
-                            すべて見る
-                        </button>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
-                        <!-- Plant Card -->
-                        <div class="bg-white rounded-xl border border-gray-200 p-6 hover:border-primary transition-colors shadow-card hover:shadow-card-hover">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
-                                        <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4z"/>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold text-gray-900">モンステラ</h4>
-                                        <p class="text-sm text-gray-500">2024.01.15</p>
-                                    </div>
-                                </div>
-                                <span class="text-xs text-primary bg-primary/10 px-2 py-1 rounded-full font-medium">
-                                    水やり予定
-                                </span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="text-sm text-gray-600">最終記録: 3日前</span>
-                                <div class="flex items-center space-x-2">
-                                    <button class="text-gray-400 hover:text-primary transition-colors">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
-                                        </svg>
-                                    </button>
-                                    <button class="text-gray-400 hover:text-primary transition-colors">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Plant Card -->
-                        <div class="bg-white rounded-xl border border-gray-200 p-6 hover:border-primary transition-colors shadow-card hover:shadow-card-hover">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
-                                        <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4z"/>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold text-gray-900">サンセベリア</h4>
-                                        <p class="text-sm text-gray-500">2024.02.01</p>
-                                    </div>
-                                </div>
-                                <span class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-full font-medium">
-                                    元気
-                                </span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <span class="text-sm text-gray-600">最終記録: 1日前</span>
-                                <div class="flex items-center space-x-2">
-                                    <button class="text-gray-400 hover:text-primary transition-colors">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
-                                        </svg>
-                                    </button>
-                                    <button class="text-gray-400 hover:text-primary transition-colors">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Column - Sidebar -->
-            <div class="hidden lg:block">
-                <!-- Quick Actions -->
-                <div class="mb-8">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">クイックアクション</h3>
-                    <div class="space-y-3">
-                        <button class="w-full bg-primary text-white py-3 px-4 rounded-lg hover:bg-primary-dark transition-colors font-medium">
-                            植物を登録
-                        </button>
-                        <button class="w-full bg-white border border-gray-200 py-3 px-4 rounded-lg hover:border-primary transition-colors font-medium">
-                            記録する
-                        </button>
-                        <button class="w-full bg-white border border-gray-200 py-3 px-4 rounded-lg hover:border-primary transition-colors font-medium">
-                            水やり管理
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Statistics -->
-                <div class="mb-8">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">統計</h3>
-                    <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-card">
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-gray-600">登録植物数</span>
-                                <span class="text-lg font-semibold text-gray-900">3</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-gray-600">今月の記録</span>
-                                <span class="text-lg font-semibold text-gray-900">12</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm text-gray-600">水やり予定</span>
-                                <span class="text-lg font-semibold text-primary">1</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recent Activity -->
+      <!-- Main Content Grid -->
+      <div class="lg:grid lg:grid-cols-3 lg:gap-8">
+        <!-- Left Column - Main Content -->
+        <div class="lg:col-span-2">
+          <!-- Today's Tasks -->
+          <div class="mb-8">
+            <div class="bg-primary/5 border border-primary/20 rounded-xl p-6">
+              <div class="flex items-start justify-between mb-4">
                 <div>
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">最近のアクティビティ</h3>
-                    <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-card">
-                        <div class="space-y-4">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"/>
-                                    </svg>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="text-sm text-gray-900">サンセベリアに水やり</p>
-                                    <p class="text-xs text-gray-500">1日前</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
-                                    </svg>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="text-sm text-gray-900">ポトスの観察記録</p>
-                                    <p class="text-xs text-gray-500">2日前</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                    今日のタスク
+                  </h3>
+                  <p class="text-sm text-gray-600">
+                    水やりが必要な植物があります
+                  </p>
                 </div>
+                <div
+                  class="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center"
+                >
+                  <svg
+                    class="w-4 h-4 text-primary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                  <div
+                    class="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-primary"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4z"
+                      />
+                    </svg>
+                  </div>
+                  <span class="text-gray-900 font-medium">モンステラ</span>
+                </div>
+                <button
+                  class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors text-sm font-medium"
+                >
+                  完了
+                </button>
+              </div>
             </div>
+          </div>
+
+          <!-- My Plants -->
+          <div class="mb-8">
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="text-lg font-semibold text-gray-900 lg:text-xl">
+                私の植物
+              </h3>
+              <button
+                class="text-primary hover:text-primary-dark transition-colors text-sm font-medium"
+              >
+                すべて見る
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+              <!-- Plant Card -->
+              <div
+                class="bg-white rounded-xl border border-gray-200 p-6 hover:border-primary transition-colors shadow-card hover:shadow-card-hover"
+              >
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex items-center space-x-3">
+                    <div
+                      class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center"
+                    >
+                      <svg
+                        class="w-6 h-6 text-gray-500"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold text-gray-900">モンステラ</h4>
+                      <p class="text-sm text-gray-500">2024.01.15</p>
+                    </div>
+                  </div>
+                  <span
+                    class="text-xs text-primary bg-primary/10 px-2 py-1 rounded-full font-medium"
+                  >
+                    水やり予定
+                  </span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-sm text-gray-600">最終記録: 3日前</span>
+                  <div class="flex items-center space-x-2">
+                    <button
+                      class="text-gray-400 hover:text-primary transition-colors"
+                    >
+                      <svg
+                        class="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      class="text-gray-400 hover:text-primary transition-colors"
+                    >
+                      <svg
+                        class="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Plant Card -->
+              <div
+                class="bg-white rounded-xl border border-gray-200 p-6 hover:border-primary transition-colors shadow-card hover:shadow-card-hover"
+              >
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex items-center space-x-3">
+                    <div
+                      class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center"
+                    >
+                      <svg
+                        class="w-6 h-6 text-gray-500"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold text-gray-900">サンセベリア</h4>
+                      <p class="text-sm text-gray-500">2024.02.01</p>
+                    </div>
+                  </div>
+                  <span
+                    class="text-xs text-gray-600 bg-gray-100 px-2 py-1 rounded-full font-medium"
+                  >
+                    元気
+                  </span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-sm text-gray-600">最終記録: 1日前</span>
+                  <div class="flex items-center space-x-2">
+                    <button
+                      class="text-gray-400 hover:text-primary transition-colors"
+                    >
+                      <svg
+                        class="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                        />
+                      </svg>
+                    </button>
+                    <button
+                      class="text-gray-400 hover:text-primary transition-colors"
+                    >
+                      <svg
+                        class="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- Right Column - Sidebar -->
+        <div class="hidden lg:block">
+          <!-- Quick Actions -->
+          <div class="mb-8">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              クイックアクション
+            </h3>
+            <div class="space-y-3">
+              <button
+                class="w-full bg-primary text-white py-3 px-4 rounded-lg hover:bg-primary-dark transition-colors font-medium"
+              >
+                植物を登録
+              </button>
+              <button
+                class="w-full bg-white border border-gray-200 py-3 px-4 rounded-lg hover:border-primary transition-colors font-medium"
+              >
+                記録する
+              </button>
+              <button
+                class="w-full bg-white border border-gray-200 py-3 px-4 rounded-lg hover:border-primary transition-colors font-medium"
+              >
+                水やり管理
+              </button>
+            </div>
+          </div>
+
+          <!-- Statistics -->
+          <div class="mb-8">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">統計</h3>
+            <div
+              class="bg-white rounded-xl border border-gray-200 p-6 shadow-card"
+            >
+              <div class="space-y-4">
+                <div class="flex justify-between items-center">
+                  <span class="text-sm text-gray-600">登録植物数</span>
+                  <span class="text-lg font-semibold text-gray-900">3</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-sm text-gray-600">今月の記録</span>
+                  <span class="text-lg font-semibold text-gray-900">12</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-sm text-gray-600">水やり予定</span>
+                  <span class="text-lg font-semibold text-primary">1</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Activity -->
+          <div>
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              最近のアクティビティ
+            </h3>
+            <div
+              class="bg-white rounded-xl border border-gray-200 p-6 shadow-card"
+            >
+              <div class="space-y-4">
+                <div class="flex items-center space-x-3">
+                  <div
+                    class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-primary"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12l2 2 4-4"
+                      />
+                    </svg>
+                  </div>
+                  <div class="flex-1">
+                    <p class="text-sm text-gray-900">サンセベリアに水やり</p>
+                    <p class="text-xs text-gray-500">1日前</p>
+                  </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <div
+                    class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-primary"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="flex-1">
+                    <p class="text-sm text-gray-900">ポトスの観察記録</p>
+                    <p class="text-xs text-gray-500">2日前</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <!-- Bottom Navigation (Mobile only) -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 lg:hidden">
-        <div class="max-w-sm mx-auto px-4">
-            <div class="flex justify-around py-3">
-                <a href="#" class="flex flex-col items-center space-y-1 py-2">
-                    <div class="w-6 h-6 flex items-center justify-center">
-                        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/>
-                        </svg>
-                    </div>
-                    <span class="text-xs text-primary font-medium">ホーム</span>
-                </a>
-                <a href="#" class="flex flex-col items-center space-y-1 py-2">
-                    <div class="w-6 h-6 flex items-center justify-center">
-                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4z"/>
-                        </svg>
-                    </div>
-                    <span class="text-xs text-gray-500">植物</span>
-                </a>
-                <a href="#" class="flex flex-col items-center space-y-1 py-2">
-                    <div class="w-6 h-6 flex items-center justify-center">
-                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
-                        </svg>
-                    </div>
-                    <span class="text-xs text-gray-500">記録</span>
-                </a>
-                <a href="#" class="flex flex-col items-center space-y-1 py-2">
-                    <div class="w-6 h-6 flex items-center justify-center">
-                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                    </div>
-                    <span class="text-xs text-gray-500">水やり</span>
-                </a>
+    <nav
+      class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 lg:hidden"
+    >
+      <div class="max-w-sm mx-auto px-4">
+        <div class="flex justify-around py-3">
+          <a href="#" class="flex flex-col items-center space-y-1 py-2">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <svg
+                class="w-5 h-5 text-primary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"
+                />
+              </svg>
             </div>
+            <span class="text-xs text-primary font-medium">ホーム</span>
+          </a>
+          <a href="#" class="flex flex-col items-center space-y-1 py-2">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <svg
+                class="w-5 h-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4z"
+                />
+              </svg>
+            </div>
+            <span class="text-xs text-gray-500">植物</span>
+          </a>
+          <a href="#" class="flex flex-col items-center space-y-1 py-2">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <svg
+                class="w-5 h-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                />
+              </svg>
+            </div>
+            <span class="text-xs text-gray-500">記録</span>
+          </a>
+          <a href="#" class="flex flex-col items-center space-y-1 py-2">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <svg
+                class="w-5 h-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            <span class="text-xs text-gray-500">水やり</span>
+          </a>
         </div>
+      </div>
     </nav>
 
     <!-- Bottom padding for navigation (Mobile only) -->
     <div class="h-20 lg:hidden"></div>
-</body>
+  </body>
 </html>
