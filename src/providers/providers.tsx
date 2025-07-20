@@ -2,11 +2,14 @@
 
 import { QueryProvider } from './query-provider';
 import { JotaiProvider } from './jotai-provider';
+import { AuthProvider } from '@/components/providers/AuthProvider';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <JotaiProvider>
-      <QueryProvider>{children}</QueryProvider>
+      <AuthProvider>
+        <QueryProvider>{children}</QueryProvider>
+      </AuthProvider>
     </JotaiProvider>
   );
 }

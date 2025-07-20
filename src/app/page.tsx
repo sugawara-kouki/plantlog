@@ -1,10 +1,18 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+import { useAtom } from 'jotai';
+import { useEffect } from 'react';
 import { usePlants } from '@/hooks/usePlants';
 import { usePlantTypes } from '@/hooks/usePlantTypes';
+import { isAuthenticatedAtom, isLoadingAtom } from '@/store/auth';
 import Home from '@/components/Home';
 
 export default function HomePage() {
+  const router = useRouter();
+  const [isAuthenticated] = useAtom(isAuthenticatedAtom);
+  const [isAuthLoading] = useAtom(isLoadingAtom);
+
   const {
     data: plants,
     isLoading: plantsLoading,
@@ -12,7 +20,13 @@ export default function HomePage() {
   } = usePlants();
   const { isLoading: typesLoading, error: typesError } = usePlantTypes();
 
-  if (plantsLoading || typesLoading) {
+  useEffect(() => {
+    if (!isAuthLoading && !isAuthenticated) {
+      router.push('/login');
+    }
+  }, [isAuthenticated, isAuthLoading, router]);
+
+  if (isAuthLoading || plantsLoading || typesLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">

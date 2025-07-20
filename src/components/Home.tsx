@@ -7,6 +7,8 @@ import MyPlantsSection from './MyPlantsSection';
 import StatisticsCard from './StatisticsCard';
 import RecentActivity from './RecentActivity';
 import BottomNavigation from './BottomNavigation';
+import { AuthStatus } from './auth/AuthStatus';
+import { AuthDebug } from './auth/AuthDebug';
 
 /**
  * ホーム画面のメインコンポーネント
@@ -15,7 +17,6 @@ import BottomNavigation from './BottomNavigation';
  * レスポンシブデザインで、モバイルとデスクトップに対応
  */
 export default function Home({
-  user = { name: '田中太郎', initial: '田' },
   todaysTasks = [],
   myPlants = [],
   statistics = { totalPlants: 3, monthlyRecords: 12, wateringDue: 1 },
@@ -26,10 +27,10 @@ export default function Home({
   onCompleteTask,
   onEditPlant,
   onWaterPlant,
-}: HomeProps) {
+}: Omit<HomeProps, 'user'>) {
   return (
     <div className="bg-gray-50 min-h-screen text-gray-900 font-sans">
-      <Header user={user} />
+      <Header />
 
       {/* Main Content */}
       <main className="max-w-sm mx-auto px-4 py-6 lg:max-w-6xl lg:px-8 lg:py-8">
