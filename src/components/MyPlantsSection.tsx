@@ -17,30 +17,49 @@ export default function MyPlantsSection({
   onEditPlant,
   onWaterPlant,
 }: MyPlantsSectionProps) {
-  // サンプルデータ（実際のデータがない場合）
-  const samplePlants: Plant[] = [
-    {
-      id: 'sample-1',
-      name: 'モンステラ',
-      type: 'モンステラ',
-      registeredDate: '2024.01.15',
-      lastRecord: '3日前',
-      status: 'watering_due',
-      statusText: '水やり予定',
-    },
-    {
-      id: 'sample-2',
-      name: 'サンセベリア',
-      type: 'サンセベリア',
-      registeredDate: '2024.02.01',
-      lastRecord: '1日前',
-      status: 'healthy',
-      statusText: '元気',
-    },
-  ];
+  const displayPlants = plants.length > 0 ? plants : [];
 
-  const displayPlants = plants.length > 0 ? plants : samplePlants;
+  // 登録済みの植物が存在しない場合の表示
+  if (displayPlants.length === 0) {
+    return (
+      <div className="mb-8">
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-lg font-semibold text-gray-900 lg:text-xl">
+            私の植物
+          </h3>
+        </div>
 
+        <div className="bg-gray-50 rounded-xl p-8 text-center border-2 border-dashed border-gray-200">
+          <div className="mb-4">
+            <svg
+              className="mx-auto h-12 w-12 text-gray-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1}
+                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+              />
+            </svg>
+          </div>
+          <h4 className="text-lg font-medium text-gray-900 mb-2">
+            まだ植物が登録されていません
+          </h4>
+          <p className="text-gray-500 mb-6 max-w-sm mx-auto">
+            最初の植物を登録して、観察記録を始めましょう
+          </p>
+          <button className="bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary-dark transition-colors">
+            植物を登録する
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // 植物が取得できた場合の表示
   return (
     <div className="mb-8">
       <div className="flex items-center justify-between mb-6">
