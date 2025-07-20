@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { LoginForm } from '@/components/auth/LoginForm';
 import { isAuthenticatedAtom } from '@/store/auth';
 import Link from 'next/link';
+import { RiPlantFill } from '@remixicon/react';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -26,19 +27,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md px-6">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-green-500 rounded-2xl mb-4 shadow-lg">
-            <svg
-              className="w-10 h-10 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a4 4 0 004-4V5z"
-              />
-            </svg>
+            <RiPlantFill className="w-6 h-6 text-white lg:w-10 lg:h-10" />
           </div>
           <h1 className="text-3xl font-semibold text-gray-900 mb-2">
             植物観察日記
