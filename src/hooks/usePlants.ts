@@ -3,7 +3,7 @@ import { db } from '@/lib/supabase';
 import type { Database } from '@/lib/database.types';
 
 // 型定義
-type Plant = Database['public']['Tables']['plants']['Row'];
+// type Plant = Database['public']['Tables']['plants']['Row'];
 type NewPlant = Database['public']['Tables']['plants']['Insert'];
 type UpdatePlant = Database['public']['Tables']['plants']['Update'];
 

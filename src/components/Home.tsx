@@ -7,8 +7,6 @@ import MyPlantsSection from './MyPlantsSection';
 import StatisticsCard from './StatisticsCard';
 import RecentActivity from './RecentActivity';
 import BottomNavigation from './BottomNavigation';
-import { AuthStatus } from './auth/AuthStatus';
-import { AuthDebug } from './auth/AuthDebug';
 
 /**
  * ホーム画面のメインコンポーネント
