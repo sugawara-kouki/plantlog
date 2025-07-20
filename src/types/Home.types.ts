@@ -32,7 +32,6 @@ export interface HomeProps {
   myPlants?: Plant[];
   statistics?: Statistics;
   recentActivity?: Activity[];
-  onRegisterPlant?: () => void;
   onAddRecord?: () => void;
   onManageWatering?: () => void;
   onCompleteTask?: (plantId: string) => void;

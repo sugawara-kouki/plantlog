@@ -91,13 +91,16 @@ export function usePlant(plantId: number) {
   });
 }
 
+// 植物作成用の型（user_idを除外）
+type NewPlantInput = Omit<NewPlant, 'user_id'>;
+
 // 植物作成
 export function useCreatePlant() {
   const queryClient = useQueryClient();
   const { validateAuth } = useAuthValidation();
 
   return useMutation({
-    mutationFn: async (newPlant: NewPlant) => {
+    mutationFn: async (newPlant: NewPlantInput) => {
       const authResult = await validateAuth();
       if (!authResult.isValid) {
         throw new Error(authResult.error!);

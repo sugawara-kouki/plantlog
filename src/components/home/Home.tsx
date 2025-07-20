@@ -1,12 +1,12 @@
 import { HomeProps } from '@/types/Home.types';
-import Header from './Header';
+import AppHeader from '@/components/layout/AppHeader';
 import WelcomeSection from './WelcomeSection';
 import QuickActions from './QuickActions';
 import TodaysTasks from './TodaysTasks';
-import MyPlantsSection from './MyPlantsSection';
+import MyPlantsSection from '@/components/plants/MyPlantsSection';
 import StatisticsCard from './StatisticsCard';
 import RecentActivity from './RecentActivity';
-import BottomNavigation from './BottomNavigation';
+import BottomNavigation from '@/components/layout/BottomNavigation';
 
 /**
  * ホーム画面のメインコンポーネント
@@ -19,7 +19,6 @@ export default function Home({
   myPlants = [],
   statistics = { totalPlants: 3, monthlyRecords: 12, wateringDue: 1 },
   recentActivity = [],
-  onRegisterPlant,
   onAddRecord,
   onManageWatering,
   onCompleteTask,
@@ -28,17 +27,13 @@ export default function Home({
 }: Omit<HomeProps, 'user'>) {
   return (
     <div className="bg-gray-50 min-h-screen text-gray-900 font-sans">
-      <Header />
+      <AppHeader variant="home" />
 
       {/* Main Content */}
       <main className="max-w-sm mx-auto px-4 py-6 lg:max-w-6xl lg:px-8 lg:py-8">
         <WelcomeSection />
 
-        <QuickActions
-          onRegisterPlant={onRegisterPlant}
-          onAddRecord={onAddRecord}
-          isMobile={true}
-        />
+        <QuickActions onAddRecord={onAddRecord} isMobile={true} />
 
         {/* Main Content Grid */}
         <div className="lg:grid lg:grid-cols-3 lg:gap-8">
@@ -56,7 +51,6 @@ export default function Home({
           {/* Right Column - Sidebar */}
           <div className="hidden lg:block">
             <QuickActions
-              onRegisterPlant={onRegisterPlant}
               onAddRecord={onAddRecord}
               onManageWatering={onManageWatering}
               isMobile={false}

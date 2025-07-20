@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { usePlants } from '@/hooks/usePlants';
 import { usePlantTypes } from '@/hooks/usePlantTypes';
 import { isAuthenticatedAtom, isLoadingAtom } from '@/store/auth';
-import Home from '@/components/Home';
+import Home from '@/components/home/Home';
 
 export default function HomePage() {
   const router = useRouter();
@@ -157,11 +157,6 @@ export default function HomePage() {
     },
   ];
 
-  const handleRegisterPlant = () => {
-    console.log('植物を登録');
-    // TODO: Navigate to plant registration page
-  };
-
   const handleAddRecord = () => {
     console.log('記録する');
     // TODO: Navigate to record entry page
@@ -193,7 +188,6 @@ export default function HomePage() {
       todaysTasks={todaysTasks}
       statistics={statistics}
       recentActivity={recentActivity}
-      onRegisterPlant={handleRegisterPlant}
       onAddRecord={handleAddRecord}
       onManageWatering={handleManageWatering}
       onCompleteTask={handleCompleteTask}
