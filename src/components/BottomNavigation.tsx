@@ -1,4 +1,9 @@
-import { RiHome5Fill, RiPlantLine, RiEditLine, RiDropLine } from '@remixicon/react';
+import {
+  RiHome5Fill,
+  RiPlantLine,
+  RiEditLine,
+  RiDropLine,
+} from '@remixicon/react';
 
 /**
  * モバイル用ボトムナビゲーション

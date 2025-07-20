@@ -75,47 +75,70 @@ export default function HomePage() {
   // Transform plants data for Home component
   const myPlants =
     plants?.map(plant => ({
-      id: plant.id,
+      id: plant.id.toString(),
       name: plant.name,
       type: plant.plant_types?.name || '未設定',
-      registeredDate: new Date(plant.registered_date)
-        .toLocaleDateString('ja-JP', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-        })
-        .replace(/\//g, '.'),
+      registeredDate: plant.purchase_date
+        ? new Date(plant.purchase_date)
+            .toLocaleDateString('ja-JP', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+            })
+            .replace(/\//g, '.')
+        : '未設定',
       lastRecord: '3日前', // TODO: Calculate from actual data
-      status: 'healthy' as const, // TODO: Calculate from actual data
-      statusText: '元気',
+      status:
+        plant.current_status === '元気'
+          ? ('healthy' as const)
+          : plant.current_status === '心配' ||
+              plant.current_status === '元気がない'
+            ? ('attention_needed' as const)
+            : ('healthy' as const),
+      statusText: plant.current_status || '普通',
     })) || [];
 
-  // Get plants that need watering (mock for now)
-  const todaysTasks = myPlants
-    .filter((_, index) => index === 0)
-    .map(plant => ({
-      ...plant,
-      status: 'watering_due' as const,
-      statusText: '水やり予定',
-    }));
+  // Get plants that need watering today
+  const today = new Date().toISOString().split('T')[0];
+  const todaysTasks =
+    plants
+      ?.filter(plant => plant.next_watering_date === today)
+      .map(plant => ({
+        id: plant.id.toString(),
+        name: plant.name,
+        type: plant.plant_types?.name || '未設定',
+        registeredDate: plant.purchase_date
+          ? new Date(plant.purchase_date)
+              .toLocaleDateString('ja-JP', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+              })
+              .replace(/\//g, '.')
+          : '未設定',
+        lastRecord: '3日前',
+        status: 'watering_due' as const,
+        statusText: '水やり予定',
+      })) || [];
 
   const statistics = {
     totalPlants: plants?.length || 0,
-    monthlyRecords: 12, // TODO: Calculate from actual data
+    monthlyRecords: 12, // TODO: Calculate from actual observation records
     wateringDue: todaysTasks.length,
   };
 
+  // TODO: Get actual recent activity from database
   const recentActivity = [
     {
       id: '1',
       type: 'watering' as const,
-      plantName: 'サンセベリア',
+      plantName: plants?.[0]?.name || 'サンセベリア',
       timeAgo: '1日前',
     },
     {
       id: '2',
       type: 'observation' as const,
-      plantName: 'ポトス',
+      plantName: plants?.[1]?.name || 'ポトス',
       timeAgo: '2日前',
     },
   ];
