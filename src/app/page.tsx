@@ -158,27 +158,25 @@ export default function HomePage() {
   ];
 
   const handleAddRecord = () => {
-    console.log('記録する');
     // TODO: Navigate to record entry page
   };
 
   const handleManageWatering = () => {
-    console.log('水やり管理');
     // TODO: Navigate to watering management page
   };
 
-  const handleCompleteTask = (plantId: string) => {
-    console.log('タスク完了:', plantId);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleCompleteTask = (_plantId: string) => {
     // TODO: Mark watering task as complete
   };
 
-  const handleEditPlant = (plantId: string) => {
-    console.log('植物編集:', plantId);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleEditPlant = (_plantId: string) => {
     // TODO: Navigate to plant edit page
   };
 
-  const handleWaterPlant = (plantId: string) => {
-    console.log('水やり:', plantId);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleWaterPlant = (_plantId: string) => {
     // TODO: Record watering
   };
 

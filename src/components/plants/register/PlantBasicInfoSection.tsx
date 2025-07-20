@@ -7,12 +7,13 @@ import {
   UseFormWatch,
 } from 'react-hook-form';
 import PlantTypeSelect from './PlantTypeSelect';
+import { PlantFormData } from '@/types/PlantForm.types';
 
 interface PlantBasicInfoSectionProps {
-  register: UseFormRegister<any>;
-  errors: FieldErrors<any>;
-  setValue: UseFormSetValue<any>;
-  watch: UseFormWatch<any>;
+  register: UseFormRegister<PlantFormData>;
+  errors: FieldErrors<PlantFormData>;
+  setValue: UseFormSetValue<PlantFormData>;
+  watch: UseFormWatch<PlantFormData>;
 }
 
 export default function PlantBasicInfoSection({

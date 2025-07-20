@@ -1,10 +1,11 @@
 'use client';
 
 import { UseFormRegister, FieldErrors } from 'react-hook-form';
+import { PlantFormData } from '@/types/PlantForm.types';
 
 interface WateringScheduleSectionProps {
-  register: UseFormRegister<any>;
-  errors: FieldErrors<any>;
+  register: UseFormRegister<PlantFormData>;
+  errors: FieldErrors<PlantFormData>;
 }
 
 const frequencyOptions = [

@@ -1,9 +1,10 @@
 'use client';
 
 import { UseFormRegister } from 'react-hook-form';
+import { PlantFormData } from '@/types/PlantForm.types';
 
 interface NotesSectionProps {
-  register: UseFormRegister<any>;
+  register: UseFormRegister<PlantFormData>;
   error?: string;
 }
 

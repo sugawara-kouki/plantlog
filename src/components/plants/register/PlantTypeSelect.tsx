@@ -34,8 +34,8 @@ export default function PlantTypeSelect({
 
         if (error) throw error;
         setPlantTypes(data || []);
-      } catch (error) {
-        console.error('植物種類の取得に失敗しました:', error);
+      } catch {
+        // TODO: 今後はトースト表示などにする
       } finally {
         setLoading(false);
       }

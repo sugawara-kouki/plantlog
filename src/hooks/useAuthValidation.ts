@@ -62,7 +62,7 @@ export function useAuthValidation() {
         userId: session.user.id,
         error: null,
       };
-    } catch (error) {
+    } catch {
       return {
         isValid: false,
         userId: null,

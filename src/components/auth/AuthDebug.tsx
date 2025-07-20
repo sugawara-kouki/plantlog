@@ -2,9 +2,16 @@
 
 import { useEffect, useState } from 'react';
 import { auth } from '@/lib/supabase';
+import { Session, AuthError } from '@supabase/supabase-js';
+
+interface SessionInfo {
+  session: Session | null;
+  error: AuthError | null;
+  event?: string;
+}
 
 export function AuthDebug() {
-  const [sessionInfo, setSessionInfo] = useState<any>(null);
+  const [sessionInfo, setSessionInfo] = useState<SessionInfo | null>(null);
   const [cookies, setCookies] = useState<string>('');
 
   useEffect(() => {
@@ -27,7 +34,6 @@ export function AuthDebug() {
     const {
       data: { subscription },
     } = auth.onAuthStateChange((event, session) => {
-      console.log('Auth state changed:', event, session);
       setSessionInfo({ session, error: null, event });
     });
 
@@ -63,12 +69,16 @@ export function AuthDebug() {
 
       <button
         onClick={() => {
-          console.log('Current session:', sessionInfo);
-          console.log('Cookies:', cookies);
+          // デバッグ用の情報表示（開発環境でのみ有効）
+          if (process.env.NODE_ENV === 'development') {
+            alert(
+              `Session: ${JSON.stringify(sessionInfo, null, 2)}\nCookies: ${cookies}`
+            );
+          }
         }}
         className="mt-2 px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
       >
-        コンソールに出力
+        デバッグ情報確認
       </button>
     </div>
   );

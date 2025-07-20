@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useCreatePlant } from '@/hooks/usePlants';
 import type { Database } from '@/lib/database.types';
+import { PlantFormData } from '@/types/PlantForm.types';
 import AppHeader from '@/components/layout/AppHeader';
 
 type NewPlantInput = Omit<
@@ -30,7 +31,7 @@ const plantRegisterSchema = z.object({
   photo: z.any().optional(),
 });
 
-type PlantRegisterFormData = z.infer<typeof plantRegisterSchema>;
+type PlantRegisterFormData = PlantFormData;
 
 export default function PlantRegisterForm() {
   const router = useRouter();
@@ -66,8 +67,8 @@ export default function PlantRegisterForm() {
       await createPlant.mutateAsync(submitData);
 
       router.push('/plants');
-    } catch (error) {
-      console.error('植物登録エラー:', error);
+    } catch {
+      // TODO: 今後はトースト表示などにする
     }
   };
 
