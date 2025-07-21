@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useCreatePlant } from '@/hooks/usePlants';
+import { usePhotos } from '@/hooks/usePhotos';
 import type { Database } from '@/lib/database.types';
-import { PlantFormData } from '@/types/PlantForm.types';
 import AppHeader from '@/components/layout/AppHeader';
 
 type NewPlantInput = Omit<
@@ -28,14 +28,21 @@ const plantRegisterSchema = z.object({
   watering_frequency_days: z.number().min(1, '水やりの頻度を選択してください'),
   next_watering_date: z.string().optional(),
   notes: z.string().optional(),
-  photo: z.any().optional(),
+  photo: z
+    .object({
+      file: z.instanceof(File),
+      url: z.string(),
+      path: z.string(),
+    })
+    .optional(),
 });
 
-type PlantRegisterFormData = PlantFormData;
+type PlantRegisterFormData = z.infer<typeof plantRegisterSchema>;
 
 export default function PlantRegisterForm() {
   const router = useRouter();
   const createPlant = useCreatePlant();
+  const { createPhoto } = usePhotos();
 
   const {
     register,
@@ -64,7 +71,19 @@ export default function PlantRegisterForm() {
         created_at: new Date().toISOString(),
       };
 
-      await createPlant.mutateAsync(submitData);
+      // 植物を作成し、作成されたplant_idを取得
+      const createdPlant = await createPlant.mutateAsync(submitData);
+
+      // 画像がアップロードされている場合、photosテーブルに登録
+      if (data.photo && createdPlant) {
+        await createPhoto.mutateAsync({
+          plant_id: createdPlant.id,
+          file_path: data.photo.path,
+          file_name: data.photo.file.name,
+          file_size: data.photo.file.size,
+          mime_type: data.photo.file.type,
+        });
+      }
 
       router.push('/plants');
     } catch {
@@ -89,7 +108,7 @@ export default function PlantRegisterForm() {
 
       <form className="space-y-8 lg:grid lg:grid-cols-2 lg:gap-12 lg:space-y-0">
         <PhotoUploadSection
-          onChange={file => setValue('photo', file)}
+          onChange={uploadResult => setValue('photo', uploadResult)}
           error={errors.photo?.message as string}
         />
 

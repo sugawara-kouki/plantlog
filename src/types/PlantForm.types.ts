@@ -6,5 +6,9 @@ export interface PlantFormData {
   watering_frequency_days: number;
   next_watering_date?: string;
   notes?: string;
-  photo?: File | null;
+  photo?: {
+    file: File;
+    url: string;
+    path: string;
+  };
 }

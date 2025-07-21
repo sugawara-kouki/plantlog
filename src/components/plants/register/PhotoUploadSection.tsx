@@ -2,9 +2,12 @@
 
 import { useState, useRef } from 'react';
 import Image from 'next/image';
+import { useImageUpload } from '@/hooks/useImageUpload';
 
 interface PhotoUploadSectionProps {
-  onChange: (file: File | null) => void;
+  onChange: (
+    uploadResult: { file: File; url: string; path: string } | undefined
+  ) => void;
   error?: string;
 }
 
@@ -14,18 +17,48 @@ export default function PhotoUploadSection({
 }: PhotoUploadSectionProps) {
   const [dragActive, setDragActive] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
+  const [uploadedData, setUploadedData] = useState<{
+    file: File;
+    url: string;
+    path: string;
+  } | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const cameraInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFile = (file: File) => {
-    if (file && file.type.startsWith('image/')) {
-      onChange(file);
+  const {
+    uploadImage,
+    deleteImage,
+    isUploading,
+    error: uploadError,
+    clearError,
+  } = useImageUpload();
 
+  const handleFile = async (file: File) => {
+    if (file && file.type.startsWith('image/')) {
+      // プレビュー表示
       const reader = new FileReader();
       reader.onload = e => {
         setPreview(e.target?.result as string);
       };
       reader.readAsDataURL(file);
+
+      // 画像をSupabaseにアップロード
+      clearError();
+      const uploadResult = await uploadImage(file, 'plants');
+
+      if (uploadResult) {
+        const data = {
+          file,
+          url: uploadResult.url,
+          path: uploadResult.path,
+        };
+        setUploadedData(data);
+        onChange(data);
+      } else {
+        // アップロード失敗時はプレビューもクリア
+        setPreview(null);
+        onChange(undefined);
+      }
     }
   };
 
@@ -63,9 +96,16 @@ export default function PhotoUploadSection({
     cameraInputRef.current?.click();
   };
 
-  const removePhoto = () => {
+  const removePhoto = async () => {
+    // Supabaseから画像を削除
+    if (uploadedData) {
+      await deleteImage(uploadedData.path);
+    }
+
     setPreview(null);
-    onChange(null);
+    setUploadedData(null);
+    onChange(undefined);
+    clearError();
     if (fileInputRef.current) fileInputRef.current.value = '';
     if (cameraInputRef.current) cameraInputRef.current.value = '';
   };
@@ -89,7 +129,8 @@ export default function PhotoUploadSection({
             <button
               type="button"
               onClick={removePhoto}
-              className="absolute top-2 right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+              disabled={isUploading}
+              className="absolute top-2 right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors disabled:opacity-50"
             >
               <svg
                 className="w-4 h-4"
@@ -105,16 +146,47 @@ export default function PhotoUploadSection({
                 />
               </svg>
             </button>
+
+            {isUploading && (
+              <div className="absolute inset-0 bg-black/50 rounded-xl flex items-center justify-center">
+                <div className="text-white text-center">
+                  <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
+                  <p className="text-sm">アップロード中...</p>
+                </div>
+              </div>
+            )}
           </div>
           <div className="flex gap-3 mt-4">
             <button
               type="button"
               onClick={handleSelectClick}
-              className="flex-1 px-4 py-2 bg-primary text-white rounded-xl hover:bg-primary-dark transition-colors font-medium"
+              disabled={isUploading}
+              className="flex-1 px-4 py-2 bg-primary text-white rounded-xl hover:bg-primary-dark transition-colors font-medium disabled:opacity-50"
             >
               写真を変更
             </button>
           </div>
+
+          {uploadedData && (
+            <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded-lg">
+              <p className="text-sm text-green-700 flex items-center">
+                <svg
+                  className="w-4 h-4 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                アップロード完了
+              </p>
+            </div>
+          )}
         </div>
       ) : (
         <div
@@ -177,7 +249,27 @@ export default function PhotoUploadSection({
         </div>
       )}
 
-      {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
+      {/* エラーメッセージ表示 */}
+      {(error || uploadError) && (
+        <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+          <p className="text-sm text-red-700 flex items-center">
+            <svg
+              className="w-4 h-4 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            {error || uploadError?.message}
+          </p>
+        </div>
+      )}
 
       <input
         ref={fileInputRef}
