@@ -13,9 +13,14 @@ interface PlantCardProps {
  *
  * 植物の基本情報と操作ボタンを表示
  */
-export default function PlantCard({ plant, onEdit, onWater, onViewDetails }: PlantCardProps) {
+export default function PlantCard({
+  plant,
+  onEdit,
+  onWater,
+  onViewDetails,
+}: PlantCardProps) {
   return (
-    <div 
+    <div
       className="bg-white rounded-xl border border-gray-200 p-6 hover:border-primary transition-colors shadow-card hover:shadow-card-hover cursor-pointer"
       onClick={() => onViewDetails?.(plant.id)}
     >
@@ -45,7 +50,7 @@ export default function PlantCard({ plant, onEdit, onWater, onViewDetails }: Pla
         </span>
         <div className="flex items-center space-x-2">
           <button
-            onClick={(e) => {
+            onClick={e => {
               e.stopPropagation();
               onEdit?.(plant.id);
             }}
@@ -55,7 +60,7 @@ export default function PlantCard({ plant, onEdit, onWater, onViewDetails }: Pla
             <RiEditLine className="w-4 h-4" />
           </button>
           <button
-            onClick={(e) => {
+            onClick={e => {
               e.stopPropagation();
               onWater?.(plant.id);
             }}

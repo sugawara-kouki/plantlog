@@ -121,10 +121,10 @@ export default function AppHeader({
           {variant === 'home' && showNavigation && (
             <nav className="hidden lg:flex lg:items-center lg:space-x-6">
               <Link
-                href="/dashboard"
+                href="/"
                 className="text-gray-700 hover:text-primary transition-colors font-medium"
               >
-                ダッシュボード
+                ホーム
               </Link>
               <Link
                 href="/plants"
@@ -132,18 +132,12 @@ export default function AppHeader({
               >
                 植物一覧
               </Link>
-              <Link
-                href="/records"
-                className="text-gray-700 hover:text-primary transition-colors font-medium"
-              >
+              <span className="text-gray-400 font-medium cursor-not-allowed">
                 記録
-              </Link>
-              <Link
-                href="/watering"
-                className="text-gray-700 hover:text-primary transition-colors font-medium"
-              >
+              </span>
+              <span className="text-gray-400 font-medium cursor-not-allowed">
                 水やり
-              </Link>
+              </span>
             </nav>
           )}
 

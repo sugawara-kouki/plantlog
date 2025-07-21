@@ -8,6 +8,7 @@ import { useCreatePlant } from '@/hooks/usePlants';
 import { usePhotos } from '@/hooks/usePhotos';
 import type { Database } from '@/lib/database.types';
 import AppHeader from '@/components/layout/AppHeader';
+import BottomNavigation from '@/components/layout/BottomNavigation';
 
 type NewPlantInput = Omit<
   Database['public']['Tables']['plants']['Insert'],
@@ -106,30 +107,35 @@ export default function PlantRegisterForm() {
         showUserDropdown={false}
       />
 
-      <form className="space-y-8 lg:grid lg:grid-cols-2 lg:gap-12 lg:space-y-0">
-        <PhotoUploadSection
-          onChange={uploadResult => setValue('photo', uploadResult)}
-          error={errors.photo?.message as string}
-        />
+      {/* メインコンテンツ */}
+      <main className="max-w-sm mx-auto px-4 py-6 lg:max-w-6xl lg:px-8 lg:py-8">
+        <form className="space-y-8 lg:grid lg:grid-cols-2 lg:gap-12 lg:space-y-0">
+          <PhotoUploadSection
+            onChange={uploadResult => setValue('photo', uploadResult)}
+            error={errors.photo?.message as string}
+          />
 
-        <PlantBasicInfoSection
-          register={register}
-          errors={errors}
-          setValue={setValue}
-          watch={watch}
-        />
+          <PlantBasicInfoSection
+            register={register}
+            errors={errors}
+            setValue={setValue}
+            watch={watch}
+          />
 
-        <WateringScheduleSection register={register} errors={errors} />
+          <WateringScheduleSection register={register} errors={errors} />
 
-        <NotesSection register={register} error={errors.notes?.message} />
+          <NotesSection register={register} error={errors.notes?.message} />
 
-        <CareTipsSection />
+          <CareTipsSection />
 
-        <SubmitButtonsSection
-          onRegister={handleRegister}
-          isSubmitting={isSubmitting}
-        />
-      </form>
+          <SubmitButtonsSection
+            onRegister={handleRegister}
+            isSubmitting={isSubmitting}
+          />
+        </form>
+      </main>
+
+      <BottomNavigation />
     </div>
   );
 }

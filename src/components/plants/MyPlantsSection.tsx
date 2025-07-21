@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Plant } from '@/types/Home.types';
 import PlantCard from './PlantCard';
 
@@ -53,9 +54,12 @@ export default function MyPlantsSection({
           <p className="text-gray-500 mb-6 max-w-sm mx-auto">
             最初の植物を登録して、観察記録を始めましょう
           </p>
-          <button className="bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary-dark transition-colors">
+          <Link
+            href="/plants/register"
+            className="inline-block bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary-dark transition-colors"
+          >
             植物を登録する
-          </button>
+          </Link>
         </div>
       </div>
     );
@@ -68,9 +72,12 @@ export default function MyPlantsSection({
         <h3 className="text-lg font-semibold text-gray-900 lg:text-xl">
           私の植物
         </h3>
-        <button className="text-primary hover:text-primary-dark transition-colors text-sm font-medium">
+        <Link
+          href="/plants"
+          className="text-primary hover:text-primary-dark transition-colors text-sm font-medium"
+        >
           すべて見る
-        </button>
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">

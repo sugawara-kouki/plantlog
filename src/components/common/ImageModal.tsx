@@ -107,7 +107,7 @@ export default function ImageModal({
               className="w-full h-auto max-h-[70vh] object-contain"
               priority
             />
-            
+
             {/* 画像情報オーバーレイ */}
             {date && (
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
@@ -121,7 +121,9 @@ export default function ImageModal({
 
           {/* キャプション */}
           <div className="p-6 border-t border-gray-100">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">{imageAlt}</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              {imageAlt}
+            </h3>
             <p className="text-sm text-gray-500">
               画像をタップまたはESCキーで閉じることができます
             </p>

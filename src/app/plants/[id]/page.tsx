@@ -7,6 +7,7 @@ import { usePhotos } from '@/hooks/usePhotos';
 import Image from 'next/image';
 import { getStorageUrl } from '@/lib/storage';
 import AppHeader from '@/components/layout/AppHeader';
+import BottomNavigation from '@/components/layout/BottomNavigation';
 import ImageModal from '@/components/common/ImageModal';
 import type { Database } from '@/lib/database.types';
 
@@ -266,7 +267,7 @@ export default function PlantDetailPage({ params }: PlantDetailPageProps) {
                     <div className="absolute inset-0 pointer-events-none">
                       {/* 軽いグラデーションオーバーレイ */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-                      
+
                       {/* 右上の拡大アイコン */}
                       <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
                         <div className="w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
@@ -337,6 +338,8 @@ export default function PlantDetailPage({ params }: PlantDetailPageProps) {
         imageAlt={selectedImage?.alt || ''}
         date={selectedImage?.date}
       />
+
+      <BottomNavigation />
     </div>
   );
 }

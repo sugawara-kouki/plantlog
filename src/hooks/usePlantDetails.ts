@@ -24,7 +24,8 @@ export function usePlantDetails(plantId: number) {
 
       const { data, error } = await db
         .plants()
-        .select(`
+        .select(
+          `
           *,
           plant_types (
             id,
@@ -33,14 +34,15 @@ export function usePlantDetails(plantId: number) {
             care_difficulty,
             created_at
           )
-        `)
+        `
+        )
         .eq('id', plantId)
         .eq('user_id', authResult.userId!)
         .single();
 
       if (error) throw error;
       if (!data) throw new Error('Plant not found');
-      
+
       return data;
     },
     enabled: !!plantId,
