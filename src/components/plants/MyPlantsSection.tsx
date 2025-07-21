@@ -5,6 +5,7 @@ interface MyPlantsSectionProps {
   plants: Plant[];
   onEditPlant?: (plantId: string) => void;
   onWaterPlant?: (plantId: string) => void;
+  onViewPlantDetails?: (plantId: string) => void;
 }
 
 /**
@@ -16,6 +17,7 @@ export default function MyPlantsSection({
   plants,
   onEditPlant,
   onWaterPlant,
+  onViewPlantDetails,
 }: MyPlantsSectionProps) {
   const displayPlants = plants.length > 0 ? plants : [];
 
@@ -78,6 +80,7 @@ export default function MyPlantsSection({
             plant={plant}
             onEdit={onEditPlant}
             onWater={onWaterPlant}
+            onViewDetails={onViewPlantDetails}
           />
         ))}
       </div>

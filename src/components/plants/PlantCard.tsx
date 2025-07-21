@@ -5,6 +5,7 @@ interface PlantCardProps {
   plant: Plant;
   onEdit?: (plantId: string) => void;
   onWater?: (plantId: string) => void;
+  onViewDetails?: (plantId: string) => void;
 }
 
 /**
@@ -12,9 +13,12 @@ interface PlantCardProps {
  *
  * 植物の基本情報と操作ボタンを表示
  */
-export default function PlantCard({ plant, onEdit, onWater }: PlantCardProps) {
+export default function PlantCard({ plant, onEdit, onWater, onViewDetails }: PlantCardProps) {
   return (
-    <div className="bg-white rounded-xl border border-gray-200 p-6 hover:border-primary transition-colors shadow-card hover:shadow-card-hover">
+    <div 
+      className="bg-white rounded-xl border border-gray-200 p-6 hover:border-primary transition-colors shadow-card hover:shadow-card-hover cursor-pointer"
+      onClick={() => onViewDetails?.(plant.id)}
+    >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-3">
           <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
@@ -41,14 +45,20 @@ export default function PlantCard({ plant, onEdit, onWater }: PlantCardProps) {
         </span>
         <div className="flex items-center space-x-2">
           <button
-            onClick={() => onEdit?.(plant.id)}
+            onClick={(e) => {
+              e.stopPropagation();
+              onEdit?.(plant.id);
+            }}
             className="text-gray-400 hover:text-primary transition-colors"
             aria-label={`${plant.name}を編集`}
           >
             <RiEditLine className="w-4 h-4" />
           </button>
           <button
-            onClick={() => onWater?.(plant.id)}
+            onClick={(e) => {
+              e.stopPropagation();
+              onWater?.(plant.id);
+            }}
             className="text-gray-400 hover:text-primary transition-colors"
             aria-label={`${plant.name}に水やり`}
           >

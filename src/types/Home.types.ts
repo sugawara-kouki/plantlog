@@ -37,4 +37,5 @@ export interface HomeProps {
   onCompleteTask?: (plantId: string) => void;
   onEditPlant?: (plantId: string) => void;
   onWaterPlant?: (plantId: string) => void;
+  onViewPlantDetails?: (plantId: string) => void;
 }

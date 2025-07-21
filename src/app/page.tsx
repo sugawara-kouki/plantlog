@@ -180,6 +180,10 @@ export default function HomePage() {
     // TODO: Record watering
   };
 
+  const handleViewPlantDetails = (plantId: string) => {
+    router.push(`/plants/${plantId}`);
+  };
+
   return (
     <Home
       myPlants={myPlants}
@@ -191,6 +195,7 @@ export default function HomePage() {
       onCompleteTask={handleCompleteTask}
       onEditPlant={handleEditPlant}
       onWaterPlant={handleWaterPlant}
+      onViewPlantDetails={handleViewPlantDetails}
     />
   );
 }

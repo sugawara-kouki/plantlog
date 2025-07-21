@@ -24,6 +24,7 @@ export default function Home({
   onCompleteTask,
   onEditPlant,
   onWaterPlant,
+  onViewPlantDetails,
 }: Omit<HomeProps, 'user'>) {
   return (
     <div className="bg-gray-50 min-h-screen text-gray-900 font-sans">
@@ -45,6 +46,7 @@ export default function Home({
               plants={myPlants}
               onEditPlant={onEditPlant}
               onWaterPlant={onWaterPlant}
+              onViewPlantDetails={onViewPlantDetails}
             />
           </div>
 
