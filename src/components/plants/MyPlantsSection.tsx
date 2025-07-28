@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { RiAddLine } from '@remixicon/react';
 import { Plant } from '@/types/Home.types';
 import PlantCard from './PlantCard';
 
@@ -34,19 +35,7 @@ export default function MyPlantsSection({
 
         <div className="bg-gray-50 rounded-xl p-8 text-center border-2 border-dashed border-gray-200">
           <div className="mb-4">
-            <svg
-              className="mx-auto h-12 w-12 text-gray-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1}
-                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-              />
-            </svg>
+            <RiAddLine className="mx-auto h-12 w-12 text-gray-400" />
           </div>
           <h4 className="text-lg font-medium text-gray-900 mb-2">
             まだ植物が登録されていません

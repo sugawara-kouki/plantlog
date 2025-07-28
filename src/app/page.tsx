@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
+import { RiPlantFill, RiErrorWarningLine } from '@remixicon/react';
 import { usePlants } from '@/hooks/usePlants';
 import { usePlantTypes } from '@/hooks/usePlantTypes';
 import { isAuthenticatedAtom, isLoadingAtom } from '@/store/auth';
@@ -31,19 +32,7 @@ export default function HomePage() {
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
           <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mx-auto mb-4">
-            <svg
-              className="w-8 h-8 text-white animate-spin"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4z"
-              />
-            </svg>
+            <RiPlantFill className="w-8 h-8 text-white animate-spin" />
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">
             植物観察日記
@@ -59,19 +48,7 @@ export default function HomePage() {
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
           <div className="w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-            <svg
-              className="w-8 h-8 text-red-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
+            <RiErrorWarningLine className="w-8 h-8 text-red-600" />
           </div>
           <h1 className="text-2xl font-bold text-red-600 mb-2">
             エラーが発生しました

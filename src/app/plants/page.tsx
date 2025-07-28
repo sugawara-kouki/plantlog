@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { RiErrorWarningLine, RiSearchLine, RiAddLine, RiBox1Line, RiArrowRightSLine } from '@remixicon/react';
 import { usePlants } from '@/hooks/usePlants';
 import { usePlantTypes } from '@/hooks/usePlantTypes';
 import AppHeader from '@/components/layout/AppHeader';
@@ -94,19 +95,7 @@ export default function PlantsPage() {
           <div className="flex items-center justify-center py-16">
             <div className="text-center">
               <div className="w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-8 h-8 text-red-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
+                <RiErrorWarningLine className="w-8 h-8 text-red-600" />
               </div>
               <h1 className="text-xl font-bold text-red-600 mb-2">
                 エラーが発生しました
@@ -154,19 +143,7 @@ export default function PlantsPage() {
                   onChange={e => setSearchTerm(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent"
                 />
-                <svg
-                  className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
+                <RiSearchLine className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
               </div>
             </div>
 
@@ -225,19 +202,7 @@ export default function PlantsPage() {
               onClick={handleAddPlant}
               className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl hover:bg-primary-dark transition-colors font-medium"
             >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 4v16m8-8H4"
-                />
-              </svg>
+              <RiAddLine className="w-5 h-5" />
               植物を追加
             </button>
           </div>
@@ -247,19 +212,7 @@ export default function PlantsPage() {
         {!filteredAndSortedPlants || filteredAndSortedPlants.length === 0 ? (
           <div className="bg-white rounded-2xl border border-gray-200 p-12 shadow-card text-center">
             <div className="w-20 h-20 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-              <svg
-                className="w-10 h-10 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10"
-                />
-              </svg>
+              <RiBox1Line className="w-10 h-10 text-gray-400" />
             </div>
             <h3 className="text-lg font-medium text-gray-900 mb-2">
               {searchTerm || selectedType !== 'all'
@@ -344,19 +297,7 @@ export default function PlantsPage() {
                       登録日:{' '}
                       {new Date(plant.created_at!).toLocaleDateString('ja-JP')}
                     </span>
-                    <svg
-                      className="w-5 h-5 text-gray-400 group-hover:text-primary transition-colors"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
+                    <RiArrowRightSLine className="w-5 h-5 text-gray-400 group-hover:text-primary transition-colors" />
                   </div>
                 </div>
               </div>

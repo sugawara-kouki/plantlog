@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { RiCloseLine } from '@remixicon/react';
 
 interface ImageModalProps {
   isOpen: boolean;
@@ -81,19 +82,7 @@ export default function ImageModal({
           className="absolute -top-4 -right-4 z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors group"
           aria-label="画像を閉じる"
         >
-          <svg
-            className="w-5 h-5 text-gray-600 group-hover:text-gray-800 transition-colors"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+          <RiCloseLine className="w-5 h-5 text-gray-600 group-hover:text-gray-800 transition-colors" />
         </button>
 
         {/* 画像コンテナ */}
