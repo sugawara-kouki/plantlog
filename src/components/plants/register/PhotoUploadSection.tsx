@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { useImageUpload } from '@/hooks/useImageUpload';
+import { RiCloseLine, RiCheckLine, RiErrorWarningLine, RiCameraLine } from '@remixicon/react';
 
 interface PhotoUploadSectionProps {
   onChange: (
@@ -132,19 +133,7 @@ export default function PhotoUploadSection({
               disabled={isUploading}
               className="absolute top-2 right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors disabled:opacity-50"
             >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+              <RiCloseLine className="w-4 h-4" />
             </button>
 
             {isUploading && (
@@ -170,19 +159,7 @@ export default function PhotoUploadSection({
           {uploadedData && (
             <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded-lg">
               <p className="text-sm text-green-700 flex items-center">
-                <svg
-                  className="w-4 h-4 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
+                <RiCheckLine className="w-4 h-4 mr-2" />
                 アップロード完了
               </p>
             </div>
@@ -200,25 +177,7 @@ export default function PhotoUploadSection({
           onClick={handleSelectClick}
         >
           <div className="w-20 h-20 bg-gradient-to-br from-primary/10 to-primary/20 rounded-2xl mx-auto mb-4 flex items-center justify-center lg:w-24 lg:h-24">
-            <svg
-              className="w-10 h-10 text-primary lg:w-12 lg:h-12"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-            </svg>
+            <RiCameraLine className="w-10 h-10 text-primary lg:w-12 lg:h-12" />
           </div>
           <h3 className="text-lg font-medium text-gray-900 mb-2">写真を追加</h3>
           <p className="text-sm text-gray-500 mb-4">
@@ -253,19 +212,7 @@ export default function PhotoUploadSection({
       {(error || uploadError) && (
         <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
           <p className="text-sm text-red-700 flex items-center">
-            <svg
-              className="w-4 h-4 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
+            <RiErrorWarningLine className="w-4 h-4 mr-2" />
             {error || uploadError?.message}
           </p>
         </div>

@@ -2,6 +2,7 @@
 
 import { use, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { RiErrorWarningLine, RiSearchLine, RiImageLine } from '@remixicon/react';
 import { usePlantDetails } from '@/hooks/usePlantDetails';
 import { usePhotos } from '@/hooks/usePhotos';
 import Image from 'next/image';
@@ -95,19 +96,7 @@ export default function PlantDetailPage({ params }: PlantDetailPageProps) {
           <div className="flex items-center justify-center py-16">
             <div className="text-center">
               <div className="w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-8 h-8 text-red-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
+                <RiErrorWarningLine className="w-8 h-8 text-red-600" />
               </div>
               <h1 className="text-xl font-bold text-red-600 mb-2">
                 エラーが発生しました
@@ -228,19 +217,7 @@ export default function PlantDetailPage({ params }: PlantDetailPageProps) {
           ) : photosError ? (
             <div className="text-center py-12">
               <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <svg
-                  className="w-6 h-6 text-red-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
+                <RiErrorWarningLine className="w-6 h-6 text-red-600" />
               </div>
               <p className="text-red-600 font-medium">
                 写真の読み込みに失敗しました
@@ -271,19 +248,7 @@ export default function PlantDetailPage({ params }: PlantDetailPageProps) {
                       {/* 右上の拡大アイコン */}
                       <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
                         <div className="w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
-                          <svg
-                            className="w-4 h-4 text-gray-700"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                            />
-                          </svg>
+                          <RiSearchLine className="w-4 h-4 text-gray-700" />
                         </div>
                       </div>
                     </div>
@@ -305,19 +270,7 @@ export default function PlantDetailPage({ params }: PlantDetailPageProps) {
           ) : (
             <div className="text-center py-12">
               <div className="w-20 h-20 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                <svg
-                  className="w-10 h-10 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
+                <RiImageLine className="w-10 h-10 text-gray-400" />
               </div>
               <h3 className="text-lg font-medium text-gray-900 mb-2">
                 まだ写真がありません
