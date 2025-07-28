@@ -104,7 +104,6 @@ export default function PlantRegisterForm() {
         subtitle="新しい植物を家族に迎えましょう"
         showBackButton={true}
         showNavigation={false}
-        showUserDropdown={false}
       />
 
       {/* メインコンテンツ */}

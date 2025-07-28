@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAtom } from 'jotai';
@@ -18,7 +19,6 @@ interface AppHeaderProps {
   subtitle?: string;
   showBackButton?: boolean;
   showNavigation?: boolean;
-  showUserDropdown?: boolean;
 }
 
 /**
@@ -32,17 +32,50 @@ export default function AppHeader({
   subtitle,
   showBackButton = false,
   showNavigation = true,
-  showUserDropdown = true,
 }: AppHeaderProps) {
   const router = useRouter();
   const [user] = useAtom(userAtom);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleLogout = async () => {
     await auth.signOut();
+    setIsDropdownOpen(false);
   };
 
   const handleBack = () => {
     router.back();
+  };
+
+  // モバイル判定とリサイズ対応
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // クリック外でドロップダウンを閉じる
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const toggleDropdown = () => {
+    if (isMobile) {
+      setIsDropdownOpen(!isDropdownOpen);
+    }
   };
 
   // ユーザー名の最初の文字を取得
@@ -142,44 +175,11 @@ export default function AppHeader({
           )}
 
           {/* Right Section - User Profile */}
-          <div className="relative">
-            {showUserDropdown ? (
-              <div className="group">
-                <button className="flex items-center space-x-2 text-gray-700 hover:text-primary transition-colors lg:px-3 lg:py-2 lg:border lg:border-gray-200 lg:rounded-xl lg:hover:border-primary">
-                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                    <span className="text-white text-sm font-medium">
-                      {getUserInitial()}
-                    </span>
-                  </div>
-                  <span className="hidden lg:inline text-sm font-medium">
-                    {getUserDisplayName()}
-                  </span>
-                  <RiArrowDownSLine className="w-4 h-4 text-gray-500 hidden lg:inline" />
-                </button>
-
-                {/* Dropdown Menu */}
-                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <div className="p-3 border-b border-gray-100">
-                    <p className="text-sm font-medium text-gray-900">
-                      {getUserDisplayName()}
-                    </p>
-                    <p className="text-xs text-gray-500">{user?.email}</p>
-                  </div>
-                  <div className="py-1">
-                    <button
-                      onClick={handleLogout}
-                      className="w-full flex items-center px-3 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
-                    >
-                      <RiLogoutBoxLine className="w-4 h-4 mr-2" />
-                      ログアウト
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ) : (
+          <div className="relative" ref={dropdownRef}>
+            <div className={isMobile ? '' : 'group'}>
               <button
-                type="button"
-                className="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors lg:px-3 lg:py-2 lg:border lg:border-gray-200 lg:rounded-xl lg:hover:border-primary"
+                onClick={toggleDropdown}
+                className="flex items-center space-x-2 text-gray-700 hover:text-primary transition-colors lg:px-3 lg:py-2 lg:border lg:border-gray-200 lg:rounded-xl lg:hover:border-primary"
               >
                 <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                   <span className="text-white text-sm font-medium">
@@ -189,8 +189,36 @@ export default function AppHeader({
                 <span className="hidden lg:inline text-sm font-medium">
                   {getUserDisplayName()}
                 </span>
+                <RiArrowDownSLine 
+                  className={`w-4 h-4 text-gray-500 hidden lg:inline transition-transform duration-200 ${
+                    isDropdownOpen ? 'rotate-180' : ''
+                  }`} 
+                />
               </button>
-            )}
+
+              {/* Dropdown Menu */}
+              <div className={`absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg transition-all duration-200 z-50 ${
+                isMobile 
+                  ? (isDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible')
+                  : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible'
+              }`}>
+                <div className="p-3 border-b border-gray-100">
+                  <p className="text-sm font-medium text-gray-900">
+                    {getUserDisplayName()}
+                  </p>
+                  <p className="text-xs text-gray-500">{user?.email}</p>
+                </div>
+                <div className="py-1">
+                  <button
+                    onClick={handleLogout}
+                    className="w-full flex items-center px-3 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                  >
+                    <RiLogoutBoxLine className="w-4 h-4 mr-2" />
+                    ログアウト
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

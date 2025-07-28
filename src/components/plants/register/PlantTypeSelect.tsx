@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { RiArrowDownSLine } from '@remixicon/react';
 import { db } from '@/lib/supabase';
 
 interface PlantType {
@@ -54,21 +55,26 @@ export default function PlantTypeSelect({
 
   return (
     <div>
-      <select
-        value={value || ''}
-        onChange={e => onChange(Number(e.target.value))}
-        className={`w-full px-4 py-3 border rounded-xl focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all ${
-          error ? 'border-red-300' : 'border-gray-200'
-        }`}
-      >
-        <option value="">選択してください</option>
-        {plantTypes.map(type => (
-          <option key={type.id} value={type.id}>
-            {type.name}
-            {type.scientific_name && ` (${type.scientific_name})`}
-          </option>
-        ))}
-      </select>
+      <div className="relative">
+        <select
+          value={value || ''}
+          onChange={e => onChange(Number(e.target.value))}
+          className={`w-full px-4 py-3 pr-10 border rounded-xl focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all appearance-none bg-white ${
+            error ? 'border-red-300' : 'border-gray-200'
+          }`}
+        >
+          <option value="">選択してください</option>
+          {plantTypes.map(type => (
+            <option key={type.id} value={type.id}>
+              {type.name}
+              {type.scientific_name && ` (${type.scientific_name})`}
+            </option>
+          ))}
+        </select>
+        <RiArrowDownSLine 
+          className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+        />
+      </div>
       {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
     </div>
   );
