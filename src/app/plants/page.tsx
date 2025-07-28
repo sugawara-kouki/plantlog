@@ -8,6 +8,7 @@ import {
   RiAddLine,
   RiBox1Line,
   RiArrowRightSLine,
+  RiArrowDownSLine,
 } from '@remixicon/react';
 import { usePlants } from '@/hooks/usePlants';
 import { usePlantTypes } from '@/hooks/usePlantTypes';
@@ -155,18 +156,23 @@ export default function PlantsPage() {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 植物の種類
               </label>
-              <select
-                value={selectedType}
-                onChange={e => setSelectedType(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent"
-              >
-                <option value="all">すべて</option>
-                {plantTypes?.map(type => (
-                  <option key={type.id} value={type.id.toString()}>
-                    {type.name}
-                  </option>
-                ))}
-              </select>
+              <div className="relative">
+                <select
+                  value={selectedType}
+                  onChange={e => setSelectedType(e.target.value)}
+                  className="w-full px-4 py-3 pr-10 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent appearance-none bg-white"
+                >
+                  <option value="all">すべて</option>
+                  {plantTypes?.map(type => (
+                    <option key={type.id} value={type.id.toString()}>
+                      {type.name}
+                    </option>
+                  ))}
+                </select>
+                <RiArrowDownSLine 
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+                />
+              </div>
             </div>
 
             {/* ソート */}
@@ -174,17 +180,22 @@ export default function PlantsPage() {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 並び順
               </label>
-              <select
-                value={sortBy}
-                onChange={e =>
-                  setSortBy(e.target.value as 'name' | 'date' | 'status')
-                }
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent"
-              >
-                <option value="date">登録日順</option>
-                <option value="name">名前順</option>
-                <option value="status">状態順</option>
-              </select>
+              <div className="relative">
+                <select
+                  value={sortBy}
+                  onChange={e =>
+                    setSortBy(e.target.value as 'name' | 'date' | 'status')
+                  }
+                  className="w-full px-4 py-3 pr-10 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent appearance-none bg-white"
+                >
+                  <option value="date">登録日順</option>
+                  <option value="name">名前順</option>
+                  <option value="status">状態順</option>
+                </select>
+                <RiArrowDownSLine 
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+                />
+              </div>
             </div>
           </div>
         </div>
