@@ -66,7 +66,6 @@ export default function PlantDetailPage({ params }: PlantDetailPageProps) {
           title="読み込み中..."
           showBackButton={true}
           showNavigation={false}
-          showUserDropdown={false}
         />
         <div className="max-w-sm mx-auto px-4 py-6 lg:max-w-6xl lg:px-8 lg:py-8">
           <div className="flex items-center justify-center py-16">
@@ -90,7 +89,6 @@ export default function PlantDetailPage({ params }: PlantDetailPageProps) {
           title="エラー"
           showBackButton={true}
           showNavigation={false}
-          showUserDropdown={false}
         />
         <div className="max-w-sm mx-auto px-4 py-6 lg:max-w-6xl lg:px-8 lg:py-8">
           <div className="flex items-center justify-center py-16">
@@ -122,7 +120,6 @@ export default function PlantDetailPage({ params }: PlantDetailPageProps) {
         title={plant.name}
         showBackButton={true}
         showNavigation={false}
-        showUserDropdown={false}
       />
 
       {/* メインコンテンツ */}

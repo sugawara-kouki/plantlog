@@ -2,7 +2,13 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { RiErrorWarningLine, RiSearchLine, RiAddLine, RiBox1Line, RiArrowRightSLine } from '@remixicon/react';
+import {
+  RiErrorWarningLine,
+  RiSearchLine,
+  RiAddLine,
+  RiBox1Line,
+  RiArrowRightSLine,
+} from '@remixicon/react';
 import { usePlants } from '@/hooks/usePlants';
 import { usePlantTypes } from '@/hooks/usePlantTypes';
 import AppHeader from '@/components/layout/AppHeader';
@@ -64,7 +70,6 @@ export default function PlantsPage() {
           title="植物一覧"
           showBackButton={true}
           showNavigation={false}
-          showUserDropdown={false}
         />
         <div className="max-w-sm mx-auto px-4 py-6 lg:max-w-6xl lg:px-8 lg:py-8">
           <div className="flex items-center justify-center py-16">
@@ -89,7 +94,6 @@ export default function PlantsPage() {
           title="植物一覧"
           showBackButton={true}
           showNavigation={false}
-          showUserDropdown={false}
         />
         <div className="max-w-sm mx-auto px-4 py-6 lg:max-w-6xl lg:px-8 lg:py-8">
           <div className="flex items-center justify-center py-16">
@@ -122,7 +126,6 @@ export default function PlantsPage() {
         title="植物一覧"
         showBackButton={true}
         showNavigation={false}
-        showUserDropdown={false}
       />
 
       {/* メインコンテンツ */}
