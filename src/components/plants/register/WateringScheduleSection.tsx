@@ -1,6 +1,7 @@
 'use client';
 
 import { UseFormRegister, FieldErrors } from 'react-hook-form';
+import { RiArrowDownSLine } from '@remixicon/react';
 import { PlantFormData } from '@/types/PlantForm.types';
 
 interface WateringScheduleSectionProps {
@@ -31,20 +32,25 @@ export default function WateringScheduleSection({
             <label className="block text-sm font-medium text-gray-700 mb-3">
               水やりの頻度 *
             </label>
-            <select
-              {...register('watering_frequency_days', { valueAsNumber: true })}
-              className={`w-full px-4 py-3 border rounded-xl focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all ${
-                errors.watering_frequency_days
-                  ? 'border-red-300'
-                  : 'border-gray-200'
-              }`}
-            >
-              {frequencyOptions.map(option => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
+            <div className="relative">
+              <select
+                {...register('watering_frequency_days', { valueAsNumber: true })}
+                className={`w-full px-4 py-3 pr-10 border rounded-xl focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all appearance-none bg-white ${
+                  errors.watering_frequency_days
+                    ? 'border-red-300'
+                    : 'border-gray-200'
+                }`}
+              >
+                {frequencyOptions.map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <RiArrowDownSLine 
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+              />
+            </div>
             {errors.watering_frequency_days && (
               <p className="mt-2 text-sm text-red-600">
                 {errors.watering_frequency_days.message as string}
