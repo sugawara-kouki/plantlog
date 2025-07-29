@@ -63,7 +63,10 @@ export default function AppHeader({
   // クリック外でドロップダウンを閉じる
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsDropdownOpen(false);
       }
     };
@@ -189,19 +192,23 @@ export default function AppHeader({
                 <span className="hidden lg:inline text-sm font-medium">
                   {getUserDisplayName()}
                 </span>
-                <RiArrowDownSLine 
+                <RiArrowDownSLine
                   className={`w-4 h-4 text-gray-500 hidden lg:inline transition-transform duration-200 ${
                     isDropdownOpen ? 'rotate-180' : ''
-                  }`} 
+                  }`}
                 />
               </button>
 
               {/* Dropdown Menu */}
-              <div className={`absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg transition-all duration-200 z-50 ${
-                isMobile 
-                  ? (isDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible')
-                  : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible'
-              }`}>
+              <div
+                className={`absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg transition-all duration-200 z-50 ${
+                  isMobile
+                    ? isDropdownOpen
+                      ? 'opacity-100 visible'
+                      : 'opacity-0 invisible'
+                    : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible'
+                }`}
+              >
                 <div className="p-3 border-b border-gray-100">
                   <p className="text-sm font-medium text-gray-900">
                     {getUserDisplayName()}
